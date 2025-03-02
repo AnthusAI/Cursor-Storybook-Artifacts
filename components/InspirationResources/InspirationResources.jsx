@@ -1,10 +1,50 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 /**
  * A component that displays a curated list of front-end development resources
  * and AI agent suggestions, presented in a flat, modern design.
+ * The layout is responsive and will display in two columns when the container is wide enough.
  */
-const InspirationResources = () => {
+const InspirationResources = ({ initialWidth = 0, testMode = false }) => {
+  // State to track container width and column count
+  const [containerWidth, setContainerWidth] = useState(initialWidth);
+  const containerRef = useRef(null);
+
+  // Update container width on resize
+  useEffect(() => {
+    // Skip ResizeObserver in test mode
+    if (testMode) return;
+    
+    const updateWidth = () => {
+      if (containerRef.current) {
+        setContainerWidth(containerRef.current.offsetWidth);
+      }
+    };
+
+    // Initial measurement
+    updateWidth();
+
+    // Set up resize observer to detect container width changes
+    const resizeObserver = new ResizeObserver(updateWidth);
+    if (containerRef.current) {
+      resizeObserver.observe(containerRef.current);
+    }
+
+    // Clean up
+    return () => {
+      if (containerRef.current) {
+        resizeObserver.unobserve(containerRef.current);
+      }
+      resizeObserver.disconnect();
+    };
+  }, [testMode]);
+
+  // Determine column count based on container width
+  const getColumnClass = () => {
+    // Use two columns when container is wider than 768px
+    return containerWidth > 768 ? 'grid-cols-2' : 'grid-cols-1';
+  };
+
   const suggestions = [
     {
       prompt: "Change the primary button color to indigo",
@@ -87,11 +127,11 @@ const InspirationResources = () => {
   ];
 
   return (
-    <div className="max-w-4xl mx-auto p-4 space-y-8">
+    <div ref={containerRef} className="documentation-resources w-full overflow-y-auto">
       {/* Suggestions Section */}
-      <div>
+      <div className="mb-8">
         <h3 className="text-lg font-medium mb-4">Suggestions</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className={`grid ${getColumnClass()} gap-4`}>
           {suggestions.map((suggestion, index) => (
             <div 
               key={index} 
@@ -130,7 +170,7 @@ const InspirationResources = () => {
       {/* Technologies Section */}
       <div>
         <h3 className="text-lg font-medium mb-4">Technologies</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className={`grid ${getColumnClass()} gap-4`}>
           {resources.map((resource, index) => (
             <a 
               key={index}

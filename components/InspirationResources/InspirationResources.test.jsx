@@ -2,15 +2,25 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import InspirationResources from './InspirationResources';
 
+// Mock ResizeObserver
+global.ResizeObserver = class ResizeObserver {
+  constructor(callback) {
+    this.callback = callback;
+  }
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+};
+
 describe('InspirationResources', () => {
   test('renders section headings', () => {
-    render(<InspirationResources />);
+    render(<InspirationResources testMode={true} />);
     expect(screen.getByText('Suggestions')).toBeInTheDocument();
     expect(screen.getByText('Technologies')).toBeInTheDocument();
   });
 
   test('renders resource items as links', () => {
-    render(<InspirationResources />);
+    render(<InspirationResources testMode={true} />);
     
     // Check that resource names are rendered and are part of links
     const shadcnLink = screen.getByText('Shadcn UI').closest('a');
@@ -28,7 +38,7 @@ describe('InspirationResources', () => {
   });
 
   test('renders suggestion prompts with quotes', () => {
-    render(<InspirationResources />);
+    render(<InspirationResources testMode={true} />);
     
     // Check for example prompts
     expect(screen.getByText(/Change the primary button color to indigo/)).toBeInTheDocument();
@@ -46,7 +56,7 @@ describe('InspirationResources', () => {
   });
 
   test('renders documentation links and descriptions in suggestions', () => {
-    render(<InspirationResources />);
+    render(<InspirationResources testMode={true} />);
     
     // Check for Tailwind colors link
     const tailwindColorsLink = screen.getByText('Tailwind Color Palette');
@@ -70,8 +80,32 @@ describe('InspirationResources', () => {
   });
 
   test('renders example prompt labels', () => {
-    render(<InspirationResources />);
+    render(<InspirationResources testMode={true} />);
     const promptLabels = screen.getAllByText('Example Prompt');
     expect(promptLabels.length).toBeGreaterThan(0);
+  });
+
+  test('uses single column layout for narrow containers', () => {
+    // Render with a narrow container width
+    const { container } = render(<InspirationResources initialWidth={500} testMode={true} />);
+    const grids = container.querySelectorAll('.grid');
+    
+    // Check that all grids have the single column class
+    grids.forEach(grid => {
+      expect(grid.classList.contains('grid-cols-1')).toBe(true);
+      expect(grid.classList.contains('grid-cols-2')).toBe(false);
+    });
+  });
+
+  test('uses two column layout for wide containers', () => {
+    // Render with a wide container width
+    const { container } = render(<InspirationResources initialWidth={1000} testMode={true} />);
+    const grids = container.querySelectorAll('.grid');
+    
+    // Check that all grids have the two column class
+    grids.forEach(grid => {
+      expect(grid.classList.contains('grid-cols-2')).toBe(true);
+      expect(grid.classList.contains('grid-cols-1')).toBe(false);
+    });
   });
 }); 
