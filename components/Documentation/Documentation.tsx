@@ -175,9 +175,10 @@ const Documentation: React.FC<DocumentationProps> = ({ initialWidth = 0, testMod
           foundations that professional developers can easily refine and integrate into production systems.
         </p>
         
-        <p className="mb-4 text-slate-700 dark:text-slate-300 italic">
-          Developed by <a href="https://anth.us" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">Anthus AI Solutions</a> - 
-          experts in human-AI collaboration for business solutions.
+        <p className="mb-4 text-slate-700 dark:text-slate-300">
+          When you've created something valuable with Vibe Coding and need help taking it to the next level, 
+          <a href="https://anth.us" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline"> Anthus AI Solutions</a> provides 
+          the expertise to help you launch, deploy, and operate your application with enterprise-grade quality.
         </p>
         
         <h3 className="text-lg font-medium mb-2">Features:</h3>
@@ -299,20 +300,20 @@ const Documentation: React.FC<DocumentationProps> = ({ initialWidth = 0, testMod
       <div className="mt-12 p-6 bg-blue-50 dark:bg-blue-950 rounded-lg">
         <h3 className="text-lg font-medium mb-3">Need Help with Your Project?</h3>
         <p className="mb-4 text-slate-700 dark:text-slate-300">
-          Anthus AI Solutions is here to support your journey from prototype to production. 
-          We'd be thrilled to help you with rapid prototyping or turning your prototypes into 
-          real, deployed applications that solve your business problems.
+          Vibe Coding is designed to empower developers, not replace them. When you've created a valuable prototype 
+          and are ready to take it to the next level, Anthus AI Solutions can help bridge the gap between prototype 
+          and production with decades of experience in enterprise-level application development and operations.
         </p>
         
         <div className="flex flex-col sm:flex-row gap-6 mt-4">
           <div>
             <h4 className="text-md font-medium mb-2">Our Services</h4>
             <ul className="list-disc pl-5 text-slate-700 dark:text-slate-300 space-y-1">
-              <li>Rapid prototyping with AI-assisted development</li>
-              <li>Turning prototypes into production applications</li>
-              <li>Smart process automation for business workflows</li>
-              <li>AI-powered software features</li>
-              <li>Serverless software solutions</li>
+              <li>Seamless developer collaboration</li>
+              <li>Enterprise-grade deployment</li>
+              <li>Regulatory compliance (HIPAA, SOC2, etc.)</li>
+              <li>24/7 operational support</li>
+              <li>Strategic AI implementation</li>
             </ul>
           </div>
           
