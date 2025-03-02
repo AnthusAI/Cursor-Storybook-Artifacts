@@ -4,7 +4,13 @@
 
 **Vibe Coding Workbench** is a powerful starter kit designed specifically for business leaders with a vision. It enables you to transform your business ideas into functional prototypes without coding expertise, creating working software that demonstrates real business value. Built with best practices and agile principles at its core, it produces high-quality prototypes that developers can easily refine and integrate into production systems.
 
+For more information and access to the source code, visit our [GitHub repository](https://github.com/AnthusAI/Vibe-Coding-Workbench).
+
 When you've created something valuable with Vibe Coding and need help taking it to the next level, [Anthus AI Solutions](https://anth.us) provides the expertise to help you launch, deploy, and operate your application with enterprise-grade quality.
+
+![Application Light Mode](images/app-light.png)
+
+![Application Dark Mode](images/app-dark.png)
 
 ### For Business Leaders: Why This Matters to You
 
@@ -33,7 +39,7 @@ The Vibe Coding Workbench workflow uses two main tools:
    - **Application**: Shows how everything works together
    - **Test Runner**: Verifies everything works correctly
 
-![Development Environment](images/development-environment.png)
+![Storybook Component Library](images/storybook.png)
 
 ### The Business User's Workflow
 
@@ -189,6 +195,8 @@ The application shows:
 ### Majestic: Your Quality Assurance Tool
 
 **Majestic** is a visual interface for running tests. It helps ensure that everything works correctly.
+
+![Majestic Test Runner](images/majestic.png)
 
 With Majestic, you can:
 - Run all tests with one click
