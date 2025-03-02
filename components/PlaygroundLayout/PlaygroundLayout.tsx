@@ -113,7 +113,7 @@ const PlaygroundLayout: React.FC<PlaygroundLayoutProps> = ({ contentArea, docume
       {/* Resize Handle */}
       <div 
         ref={dragHandleRef}
-        className="resize-handle cursor-col-resize bg-slate-200 dark:bg-slate-800 hover:bg-sky-500"
+        className="resize-handle cursor-col-resize"
         onMouseDown={handleMouseDown}
       >
         <div className="resize-handle-dots">
