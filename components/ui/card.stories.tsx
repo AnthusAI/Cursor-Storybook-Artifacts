@@ -1,7 +1,9 @@
+import React from 'react';
+import type { Meta, StoryObj } from '@storybook/react';
 import { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent } from './card';
 import { Button } from './button';
 
-export default {
+const meta: Meta<typeof Card> = {
   title: 'UI/Card',
   component: Card,
   parameters: {
@@ -10,10 +12,13 @@ export default {
   tags: ['autodocs'],
 };
 
+export default meta;
+type Story = StoryObj<typeof Card>;
+
 /**
  * Default card with all subcomponents
  */
-export const Default = {
+export const Default: Story = {
   render: () => (
     <Card className="w-[350px]">
       <CardHeader>
@@ -33,7 +38,7 @@ export const Default = {
 /**
  * Card with just header and content
  */
-export const HeaderAndContent = {
+export const HeaderAndContent: Story = {
   render: () => (
     <Card className="w-[350px]">
       <CardHeader>
@@ -50,7 +55,7 @@ export const HeaderAndContent = {
 /**
  * Card with multiple actions in the footer
  */
-export const MultipleActions = {
+export const MultipleActions: Story = {
   render: () => (
     <Card className="w-[350px]">
       <CardHeader>
@@ -71,7 +76,7 @@ export const MultipleActions = {
 /**
  * Card with custom styling
  */
-export const CustomStyling = {
+export const CustomStyling: Story = {
   render: () => (
     <Card className="w-[350px] border-primary">
       <CardHeader className="bg-primary text-primary-foreground">

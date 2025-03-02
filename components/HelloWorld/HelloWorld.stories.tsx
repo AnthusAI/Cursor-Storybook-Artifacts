@@ -1,6 +1,8 @@
+import React from 'react';
+import type { Meta, StoryObj } from '@storybook/react';
 import HelloWorld from './HelloWorld';
 
-export default {
+const meta: Meta<typeof HelloWorld> = {
   title: 'Components/HelloWorld',
   component: HelloWorld,
   parameters: {
@@ -12,10 +14,13 @@ export default {
   },
 };
 
+export default meta;
+type Story = StoryObj<typeof HelloWorld>;
+
 /**
  * Default story with the default "World" greeting
  */
-export const Default = {
+export const Default: Story = {
   args: {
     initialName: 'World',
   },
@@ -24,7 +29,7 @@ export const Default = {
 /**
  * Story with a custom initial greeting
  */
-export const CustomGreeting = {
+export const CustomGreeting: Story = {
   args: {
     initialName: 'Cursor User',
   },
@@ -33,7 +38,7 @@ export const CustomGreeting = {
 /**
  * Story with a longer name to test layout
  */
-export const LongName = {
+export const LongName: Story = {
   args: {
     initialName: 'Enthusiastic Storybook Developer',
   },

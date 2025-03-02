@@ -1,5 +1,15 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, ReactNode, ReactElement } from 'react';
 import './PlaygroundLayout.css';
+
+interface PlaygroundLayoutProps {
+  contentArea: ReactNode;
+  documentationArea: ReactNode;
+}
+
+// Interface for components that can accept containerWidth
+interface WithContainerWidth {
+  containerWidth?: number;
+}
 
 /**
  * PlaygroundLayout Component
@@ -9,24 +19,24 @@ import './PlaygroundLayout.css';
  * Includes a draggable resize thumb to adjust the panel sizes.
  * The documentation area is responsive and will display content in two columns when wide enough.
  */
-const PlaygroundLayout = ({ contentArea, documentationArea }) => {
+const PlaygroundLayout: React.FC<PlaygroundLayoutProps> = ({ contentArea, documentationArea }) => {
   // Default left panel width (50%)
-  const [leftPanelWidth, setLeftPanelWidth] = useState(50);
-  const [isDragging, setIsDragging] = useState(false);
-  const [docContainerWidth, setDocContainerWidth] = useState(0);
-  const containerRef = useRef(null);
-  const dragHandleRef = useRef(null);
-  const docContainerRef = useRef(null);
+  const [leftPanelWidth, setLeftPanelWidth] = useState<number>(50);
+  const [isDragging, setIsDragging] = useState<boolean>(false);
+  const [docContainerWidth, setDocContainerWidth] = useState<number>(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const dragHandleRef = useRef<HTMLDivElement>(null);
+  const docContainerRef = useRef<HTMLDivElement>(null);
 
   // Handle mouse down on the drag handle
-  const handleMouseDown = (e) => {
+  const handleMouseDown = (e: React.MouseEvent): void => {
     e.preventDefault();
     setIsDragging(true);
   };
 
   // Handle mouse move to resize panels
   useEffect(() => {
-    const handleMouseMove = (e) => {
+    const handleMouseMove = (e: MouseEvent): void => {
       if (!isDragging || !containerRef.current) return;
       
       const containerRect = containerRef.current.getBoundingClientRect();
@@ -40,7 +50,7 @@ const PlaygroundLayout = ({ contentArea, documentationArea }) => {
       setLeftPanelWidth(newLeftPanelWidth);
     };
 
-    const handleMouseUp = () => {
+    const handleMouseUp = (): void => {
       setIsDragging(false);
     };
 
@@ -59,7 +69,7 @@ const PlaygroundLayout = ({ contentArea, documentationArea }) => {
   useEffect(() => {
     if (!docContainerRef.current) return;
 
-    const updateDocWidth = () => {
+    const updateDocWidth = (): void => {
       if (docContainerRef.current) {
         setDocContainerWidth(docContainerRef.current.offsetWidth);
       }
@@ -84,7 +94,7 @@ const PlaygroundLayout = ({ contentArea, documentationArea }) => {
   // This prevents React warnings about passing unknown props to DOM elements
   const documentationWithWidth = React.isValidElement(documentationArea) && 
     typeof documentationArea.type === 'function' ? 
-    React.cloneElement(documentationArea, { containerWidth: docContainerWidth }) : 
+    React.cloneElement(documentationArea as ReactElement<WithContainerWidth>, { containerWidth: docContainerWidth }) : 
     documentationArea;
 
   return (
@@ -103,7 +113,7 @@ const PlaygroundLayout = ({ contentArea, documentationArea }) => {
       {/* Resize Handle */}
       <div 
         ref={dragHandleRef}
-        className="resize-handle cursor-col-resize"
+        className="resize-handle cursor-col-resize bg-slate-200 dark:bg-slate-800 hover:bg-sky-500"
         onMouseDown={handleMouseDown}
       >
         <div className="resize-handle-dots">

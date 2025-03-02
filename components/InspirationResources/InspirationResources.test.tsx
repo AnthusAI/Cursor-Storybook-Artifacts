@@ -1,16 +1,23 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import InspirationResources from './InspirationResources';
 
 // Mock ResizeObserver
-global.ResizeObserver = class ResizeObserver {
-  constructor(callback) {
+class MockResizeObserver implements ResizeObserver {
+  callback: ResizeObserverCallback;
+  
+  constructor(callback: ResizeObserverCallback) {
     this.callback = callback;
   }
-  observe() {}
-  unobserve() {}
-  disconnect() {}
-};
+  
+  observe(): void {}
+  unobserve(): void {}
+  disconnect(): void {}
+}
+
+// Set the global ResizeObserver
+global.ResizeObserver = MockResizeObserver;
 
 describe('InspirationResources', () => {
   test('renders section headings', () => {

@@ -1,8 +1,9 @@
-import InspirationResources from './InspirationResources';
+import type { Meta, StoryObj } from '@storybook/react';
+import Documentation from './Documentation';
 
-export default {
-  title: 'Components/InspirationResources',
-  component: InspirationResources,
+const meta: Meta<typeof Documentation> = {
+  title: 'Components/Documentation',
+  component: Documentation,
   parameters: {
     layout: 'centered',
     docs: {
@@ -14,13 +15,17 @@ export default {
   tags: ['autodocs'],
 };
 
+export default meta;
+
+type Story = StoryObj<typeof Documentation>;
+
 /**
- * Default story showing the InspirationResources component with a flat design.
+ * Default story showing the Documentation component with a flat design.
  * The component features:
  * - A Suggestions section with quoted example prompts, titles, and descriptions
  * - A Technologies section with fully clickable resource cards
  * - Consistent styling between sections with background colors and hover effects
  */
-export const Default = {
+export const Default: Story = {
   args: {},
 }; 

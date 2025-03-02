@@ -1,6 +1,8 @@
+import React from 'react';
+import type { Meta, StoryObj } from '@storybook/react';
 import PlaygroundLayout from './PlaygroundLayout';
 
-export default {
+const meta: Meta<typeof PlaygroundLayout> = {
   title: 'Components/PlaygroundLayout',
   component: PlaygroundLayout,
   parameters: {
@@ -9,7 +11,10 @@ export default {
   tags: ['autodocs'],
 };
 
-export const Default = {
+export default meta;
+type Story = StoryObj<typeof PlaygroundLayout>;
+
+export const Default: Story = {
   args: {
     contentArea: (
       <div className="flex items-center justify-center h-full">

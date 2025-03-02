@@ -7,7 +7,7 @@ import './ContentArea.css';
  * A placeholder component for the left side of the playground layout.
  * This will be where interactive content is displayed.
  */
-const ContentArea = () => {
+const ContentArea: React.FC = () => {
   return (
     <div className="content-area h-full flex flex-col items-center justify-center">
       <div className="text-center max-w-md mx-auto">

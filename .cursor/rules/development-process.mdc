@@ -14,8 +14,22 @@ Always look at the [README.md](mdc:README.md) file, it will tell you what's goin
 * Structure - When creating any new component, always put it in a new folder in `components/`, named for that new component.
 * Storybook stories - Always create a Storybook file with basic Storybook stories for that new component in the same folder as the component.
 * Storybook interaction tests - After developing a new component, always suggest to the user that you should cover important functionality with Storybook interaction tests. @https://storybook.js.org/docs/7/writing-tests/interaction-testing  Suggest adding tests after every significant accomplishment, to codify that new feature and stabilize it over time.
-* JEST tests - In the same way, suggest covering important funcctionality with JEST testing.
+* JEST tests - In the same way, suggest covering important functionality with JEST testing.
+* TypeScript - All new components should be written in TypeScript (.tsx files) with proper type definitions.
+
+## Remind the user to run tests
+
+Any time you and the user accomplish something, run the comprehensive test suite using `npm run ci`, which includes:
+1. TypeScript type checking
+2. Jest tests
+3. Storybook interaction tests
+
+Help the user address the issues immediately, rather than making a lot of changes that cause a lot of problems. Help the user follow good TDD practices.
 
 ## Suggest frequent Git commits at milestones
 
-Any time you and the user accomplish something, suggest that it might be a good idea to add testing and to commit the changes to Git.  Constantly remind the user that it's important to commit updates frequently becuase that's part of how you can 'undo' and go back if something breaks.  If you go too long without committing then you can lose stuff that works when you accidentally break something, if you haven't committed it yet.  So: Commit frequently.
+Any time you and the user accomplish something, suggest that it might be a good idea to add testing and to commit the changes to Git. Constantly remind the user that it's important to commit updates frequently because that's part of how you can 'undo' and go back if something breaks. If you go too long without committing then you can lose stuff that works when you accidentally break something, if you haven't committed it yet. So: Commit frequently.
+
+## Do not run Storybook or the app server
+
+The user will manage running `npm run start` and `npm run storybook` themselves. Please assist them by reminding them how, but don't run those servers yourself. It doesn't work well.

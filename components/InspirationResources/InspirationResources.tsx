@@ -1,14 +1,38 @@
 import React, { useState, useEffect, useRef } from 'react';
 
+// Define types for the component props
+interface InspirationResourcesProps {
+  initialWidth?: number;
+  testMode?: boolean;
+}
+
+// Define types for the suggestion items
+interface Suggestion {
+  prompt: string;
+  title: string;
+  description: string;
+  docLink?: string;
+  docLinkText?: string;
+  docDescription?: string;
+}
+
+// Define types for the resource items
+interface Resource {
+  name: string;
+  url: string;
+  description: string;
+  category: string;
+}
+
 /**
  * A component that displays a curated list of front-end development resources
  * and AI agent suggestions, presented in a flat, modern design.
  * The layout is responsive and will display in two columns when the container is wide enough.
  */
-const InspirationResources = ({ initialWidth = 0, testMode = false }) => {
+const InspirationResources: React.FC<InspirationResourcesProps> = ({ initialWidth = 0, testMode = false }) => {
   // State to track container width and column count
-  const [containerWidth, setContainerWidth] = useState(initialWidth);
-  const containerRef = useRef(null);
+  const [containerWidth, setContainerWidth] = useState<number>(initialWidth);
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
   // Update container width on resize
   useEffect(() => {
@@ -40,12 +64,12 @@ const InspirationResources = ({ initialWidth = 0, testMode = false }) => {
   }, [testMode]);
 
   // Determine column count based on container width
-  const getColumnClass = () => {
+  const getColumnClass = (): string => {
     // Use two columns when container is wider than 768px
     return containerWidth > 768 ? 'grid-cols-2' : 'grid-cols-1';
   };
 
-  const suggestions = [
+  const suggestions: Suggestion[] = [
     {
       prompt: "Change the primary button color to indigo",
       title: "Change component colors",
@@ -87,7 +111,7 @@ const InspirationResources = ({ initialWidth = 0, testMode = false }) => {
     }
   ];
 
-  const resources = [
+  const resources: Resource[] = [
     {
       name: "Shadcn UI",
       url: "https://ui.shadcn.com",

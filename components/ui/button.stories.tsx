@@ -1,6 +1,8 @@
+import React from 'react';
+import type { Meta, StoryObj } from '@storybook/react';
 import { Button } from './button';
 
-export default {
+const meta: Meta<typeof Button> = {
   title: 'UI/Button',
   component: Button,
   parameters: {
@@ -28,10 +30,13 @@ export default {
   },
 };
 
+export default meta;
+type Story = StoryObj<typeof Button>;
+
 /**
  * Default button with primary styling
  */
-export const Default = {
+export const Default: Story = {
   args: {
     children: 'Button',
     variant: 'default',
@@ -42,7 +47,7 @@ export const Default = {
 /**
  * Destructive button for dangerous actions
  */
-export const Destructive = {
+export const Destructive: Story = {
   args: {
     children: 'Delete',
     variant: 'destructive',
@@ -53,7 +58,7 @@ export const Destructive = {
 /**
  * Outline button with a border
  */
-export const Outline = {
+export const Outline: Story = {
   args: {
     children: 'Outline',
     variant: 'outline',
@@ -64,7 +69,7 @@ export const Outline = {
 /**
  * Secondary button with less emphasis
  */
-export const Secondary = {
+export const Secondary: Story = {
   args: {
     children: 'Secondary',
     variant: 'secondary',
@@ -75,7 +80,7 @@ export const Secondary = {
 /**
  * Ghost button with no background until hovered
  */
-export const Ghost = {
+export const Ghost: Story = {
   args: {
     children: 'Ghost',
     variant: 'ghost',
@@ -86,7 +91,7 @@ export const Ghost = {
 /**
  * Link button that looks like a hyperlink
  */
-export const Link = {
+export const Link: Story = {
   args: {
     children: 'Link',
     variant: 'link',
@@ -97,7 +102,7 @@ export const Link = {
 /**
  * Small button
  */
-export const Small = {
+export const Small: Story = {
   args: {
     children: 'Small',
     variant: 'default',
@@ -108,7 +113,7 @@ export const Small = {
 /**
  * Large button
  */
-export const Large = {
+export const Large: Story = {
   args: {
     children: 'Large',
     variant: 'default',
@@ -119,7 +124,7 @@ export const Large = {
 /**
  * Icon button (square)
  */
-export const Icon = {
+export const Icon: Story = {
   args: {
     children: '🔍',
     variant: 'default',
@@ -130,7 +135,7 @@ export const Icon = {
 /**
  * Disabled button
  */
-export const Disabled = {
+export const Disabled: Story = {
   args: {
     children: 'Disabled',
     variant: 'default',

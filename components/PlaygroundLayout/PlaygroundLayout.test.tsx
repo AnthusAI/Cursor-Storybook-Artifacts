@@ -1,23 +1,32 @@
 import React from 'react';
 import { render, screen, fireEvent, act } from '@testing-library/react';
+import '@testing-library/jest-dom'; // Import jest-dom for the custom matchers
 import PlaygroundLayout from './PlaygroundLayout';
 
 // Mock ResizeObserver
 global.ResizeObserver = class ResizeObserver {
-  constructor(callback) {
+  callback: ResizeObserverCallback;
+  
+  constructor(callback: ResizeObserverCallback) {
     this.callback = callback;
   }
-  observe(element) {
+  
+  observe(element: Element): void {
     // Mock element's offsetWidth
     Object.defineProperty(element, 'offsetWidth', { configurable: true, value: 800 });
     
     // Simulate an observation
     setTimeout(() => {
-      this.callback([{ target: element, contentRect: { width: 800 } }]);
+      // Pass both required arguments to the callback
+      this.callback(
+        [{ target: element, contentRect: { width: 800 } } as ResizeObserverEntry],
+        this as unknown as ResizeObserver
+      );
     }, 0);
   }
-  unobserve() {}
-  disconnect() {}
+  
+  unobserve(): void {}
+  disconnect(): void {}
 };
 
 describe('PlaygroundLayout', () => {
@@ -53,7 +62,7 @@ describe('PlaygroundLayout', () => {
     );
     
     // Assert
-    const playgroundLayout = container.firstChild;
+    const playgroundLayout = container.firstChild as HTMLElement;
     expect(playgroundLayout).toHaveClass('playground-layout');
     
     const contentContainer = container.querySelector('.content-container');
@@ -85,7 +94,11 @@ describe('PlaygroundLayout', () => {
 
   test('passes containerWidth prop to React element in documentationArea', async () => {
     // Arrange
-    const TestDocComponent = ({ containerWidth }) => (
+    interface TestDocProps {
+      containerWidth: number;
+    }
+    
+    const TestDocComponent: React.FC<TestDocProps> = ({ containerWidth }) => (
       <div data-testid="doc-component">Width: {containerWidth}</div>
     );
     
@@ -93,7 +106,7 @@ describe('PlaygroundLayout', () => {
     render(
       <PlaygroundLayout 
         contentArea={<div>Content</div>}
-        documentationArea={<TestDocComponent />}
+        documentationArea={<TestDocComponent containerWidth={800} />}
       />
     );
     

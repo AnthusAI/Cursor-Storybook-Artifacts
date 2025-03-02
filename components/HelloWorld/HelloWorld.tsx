@@ -2,11 +2,15 @@ import React, { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '../ui/card';
 import { Button } from '../ui/button';
 
+interface HelloWorldProps {
+  initialName?: string;
+}
+
 /**
  * A simple HelloWorld component that displays a card with a greeting and a button
  * that changes the greeting when clicked.
  */
-const HelloWorld = ({ initialName = 'World' }) => {
+const HelloWorld: React.FC<HelloWorldProps> = ({ initialName = 'World' }) => {
   const [name, setName] = useState(initialName);
   const [clickCount, setClickCount] = useState(0);
 

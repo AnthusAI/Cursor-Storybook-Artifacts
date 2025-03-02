@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "./ui/button";
 import { useTheme } from "./theme-provider";
 
-export function ThemeToggle() {
+export function ThemeToggle(): React.ReactElement {
   const { theme, setTheme } = useTheme();
 
   return (
@@ -19,7 +19,9 @@ export function ThemeToggle() {
   );
 }
 
-function SunIcon(props) {
+interface IconProps extends React.SVGProps<SVGSVGElement> {}
+
+function SunIcon(props: IconProps): React.ReactElement {
   return (
     <svg
       {...props}
@@ -46,7 +48,7 @@ function SunIcon(props) {
   );
 }
 
-function MoonIcon(props) {
+function MoonIcon(props: IconProps): React.ReactElement {
   return (
     <svg
       {...props}

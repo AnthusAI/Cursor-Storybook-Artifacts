@@ -1,10 +1,10 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import InspirationResources from 'components/InspirationResources/InspirationResources';
-import PlaygroundLayout from 'components/PlaygroundLayout/PlaygroundLayout';
-import ContentArea from 'components/ContentArea/ContentArea';
-import { ThemeProvider } from 'components/theme-provider';
-import { ThemeToggle } from 'components/theme-toggle';
+import Documentation from '../components/Documentation/Documentation';
+import PlaygroundLayout from '../components/PlaygroundLayout/PlaygroundLayout';
+import ContentArea from '../components/ContentArea/ContentArea';
+import { ThemeProvider } from '../components/theme-provider';
+import { ThemeToggle } from '../components/theme-toggle';
 import './globals.css';
 
 /**
@@ -13,7 +13,7 @@ import './globals.css';
  * A component that displays the main title and description for the documentation area.
  * Also includes the theme toggle button in the top right.
  */
-const DocumentationHeader = () => (
+const DocumentationHeader: React.FC = () => (
   <div className="mb-6 relative">
     <div className="absolute top-0 right-0">
       <ThemeToggle />
@@ -30,13 +30,17 @@ const DocumentationHeader = () => (
  * DocumentationArea Component
  * 
  * A wrapper component that receives the containerWidth prop from PlaygroundLayout
- * and passes it to the InspirationResources component.
+ * and passes it to the Documentation component.
  * This enables responsive column layout based on the available width.
  */
-const DocumentationArea = ({ containerWidth }) => (
+interface DocumentationAreaProps {
+  containerWidth?: number;
+}
+
+const DocumentationArea: React.FC<DocumentationAreaProps> = ({ containerWidth }) => (
   <>
     <DocumentationHeader />
-    <InspirationResources initialWidth={containerWidth} />
+    <Documentation initialWidth={containerWidth} />
   </>
 );
 
@@ -45,9 +49,9 @@ const DocumentationArea = ({ containerWidth }) => (
  * 
  * This is the main application component that serves as the entry point.
  * It uses the PlaygroundLayout component to create a two-column layout with
- * ContentArea on the left and InspirationResources on the right.
+ * ContentArea on the left and Documentation on the right.
  */
-const App = () => {
+const App: React.FC = () => {
   return (
     <ThemeProvider defaultTheme="system">
       <div className="app-container min-h-screen h-screen w-screen overflow-hidden bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-slate-50 p-2 flex flex-col">
@@ -64,5 +68,7 @@ const App = () => {
 
 // Create root and render app
 const container = document.getElementById('root');
-const root = createRoot(container);
-root.render(<App />); 
+if (container) {
+  const root = createRoot(container);
+  root.render(<App />);
+} 
