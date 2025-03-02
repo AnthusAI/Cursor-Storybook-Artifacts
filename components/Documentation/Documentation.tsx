@@ -169,9 +169,10 @@ const Documentation: React.FC<DocumentationProps> = ({ initialWidth = 0, testMod
       <div className="mb-8">
         <h2 className="text-xl font-bold mb-3">Transform Your Business Ideas into Working Software</h2>
         <p className="mb-4 text-slate-700 dark:text-slate-300">
-          This project helps business users create functional prototypes without coding expertise. 
-          Instead of endless design cycles and development delays, you can build working components 
-          that developers can easily refine and integrate into production systems.
+          Vibe Coding Workbench is a starter kit designed specifically for business leaders with a vision. 
+          Instead of getting caught in endless design cycles and development delays, you can rapidly create 
+          functional prototypes that demonstrate real business value. These prototypes are built on solid 
+          foundations that professional developers can easily refine and integrate into production systems.
         </p>
         
         <p className="mb-4 text-slate-700 dark:text-slate-300 italic">

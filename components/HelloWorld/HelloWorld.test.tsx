@@ -7,7 +7,7 @@ describe('HelloWorld Component', () => {
   test('renders with default greeting', () => {
     render(<HelloWorld />);
     expect(screen.getByText(/Hello, World!/i)).toBeInTheDocument();
-    expect(screen.getByText(/Welcome to Cursor Storybook example project./i)).toBeInTheDocument();
+    expect(screen.getByText(/Welcome to Vibe Coding Workbench./i)).toBeInTheDocument();
   });
 
   test('renders with custom greeting', () => {

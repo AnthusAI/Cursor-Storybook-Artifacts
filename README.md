@@ -1,12 +1,12 @@
-# Cursor Storybook: Rapid Prototyping for Business Users
+# Vibe Coding Workbench: Interactive Component Development
 
-## Transform Your Business Ideas into Working Software - No Coding Required
+## Transform Your Business Ideas into Working Software
 
-**Cursor Storybook** is a powerful tool designed for business professionals who have a vision for an application but don't want to get bogged down in technical details. It bridges the gap between your business ideas and functional software, eliminating the endless back-and-forth cycles with designers and developers.
+**Vibe Coding Workbench** is a powerful starter kit designed specifically for business leaders with a vision. It enables you to transform your business ideas into functional prototypes without coding expertise, creating working software that demonstrates real business value. Built with best practices and agile principles at its core, it produces high-quality prototypes that developers can easily refine and integrate into production systems.
 
 *Developed by [Anthus AI Solutions](https://anth.us) - experts in human-AI collaboration for business solutions.*
 
-### For Business Users: Why This Matters to You
+### For Business Leaders: Why This Matters to You
 
 Traditional app development is slow and frustrating:
 1. **Endless design cycles**: Weeks spent on mockups that still don't capture your vision
@@ -15,7 +15,7 @@ Traditional app development is slow and frustrating:
 4. **Costly changes**: Minor adjustments requiring significant rework
 5. **Risk of project failure**: Discovering major issues only after significant investment
 
-**Cursor Storybook changes everything** by allowing you to:
+**Vibe Coding Workbench changes everything** by allowing you to:
 
 - **Create functional prototypes immediately** - See and interact with real components, not just static designs
 - **Communicate precisely with developers** - Show exactly what you want instead of trying to explain it
@@ -25,7 +25,7 @@ Traditional app development is slow and frustrating:
 
 ## How It Works: Your Development Environment
 
-The Cursor Storybook workflow uses two main tools:
+The Vibe Coding Workbench workflow uses two main tools:
 
 1. **Cursor**: An AI-powered code editor where you describe what you want to build
 2. **Browser**: Running three tabs:
@@ -103,7 +103,7 @@ For the best experience, arrange your windows like this:
 
 ## Working with the AI Assistant
 
-The key to success with Cursor Storybook is effectively communicating with the AI assistant. Here's how to get the best results:
+The key to success with Vibe Coding Workbench is effectively communicating with the AI assistant. Here's how to get the best results:
 
 ### How to Talk to the AI
 

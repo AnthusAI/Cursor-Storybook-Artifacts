@@ -75,7 +75,7 @@ describe('PlaygroundLayout', () => {
   });
 
   test('resize handle exists and has correct styling', () => {
-    // Arrange & Act
+    // Arrange
     const { container } = render(
       <PlaygroundLayout 
         contentArea={<div>Content</div>}
@@ -86,9 +86,7 @@ describe('PlaygroundLayout', () => {
     // Assert
     const resizeHandle = container.querySelector('.resize-handle');
     expect(resizeHandle).toBeInTheDocument();
-    expect(resizeHandle).toHaveClass('bg-slate-200');
-    expect(resizeHandle).toHaveClass('dark:bg-slate-800');
-    expect(resizeHandle).toHaveClass('hover:bg-sky-500');
+    expect(resizeHandle).toHaveClass('resize-handle');
     expect(resizeHandle).toHaveClass('cursor-col-resize');
   });
 

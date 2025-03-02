@@ -25,7 +25,7 @@ const HelloWorld: React.FC<HelloWorldProps> = ({ initialName = 'World' }) => {
     <Card className="w-[350px] mx-auto">
       <CardHeader>
         <CardTitle>Hello, {name}!</CardTitle>
-        <CardDescription>Welcome to Cursor Storybook example project.</CardDescription>
+        <CardDescription>Welcome to Vibe Coding Workbench.</CardDescription>
       </CardHeader>
       <CardContent>
         <p className="text-sm text-muted-foreground">
