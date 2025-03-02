@@ -1,0 +1,48 @@
+.hello-world-card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  max-width: 400px;
+  margin: 0 auto;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hello-world-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.hello-world-content {
+  text-align: center;
+}
+
+.hello-world-content h2 {
+  color: #333;
+  margin-top: 0;
+  font-size: 1.8rem;
+}
+
+.hello-world-content p {
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.hello-world-button {
+  background-color: #4f46e5;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.hello-world-button:hover {
+  background-color: #4338ca;
+}
+
+.hello-world-button:active {
+  transform: scale(0.98);
+} 

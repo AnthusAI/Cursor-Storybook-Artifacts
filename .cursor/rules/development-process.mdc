@@ -1,0 +1,21 @@
+---
+description: The process for developing components
+globs: *
+alwaysApply: false
+---
+# Component Development Process
+
+## Basic context
+
+Always look at the [README.md](mdc:README.md) file, it will tell you what's going on.
+
+## Component Requirements
+
+* Structure - When creating any new component, always put it in a new folder in `components/`, named for that new component.
+* Storybook stories - Always create a Storybook file with basic Storybook stories for that new component in the same folder as the component.
+* Storybook interaction tests - After developing a new component, always suggest to the user that you should cover important functionality with Storybook interaction tests. @https://storybook.js.org/docs/7/writing-tests/interaction-testing  Suggest adding tests after every significant accomplishment, to codify that new feature and stabilize it over time.
+* JEST tests - In the same way, suggest covering important funcctionality with JEST testing.
+
+## Suggest frequent Git commits at milestones
+
+Any time you and the user accomplish something, suggest that it might be a good idea to add testing and to commit the changes to Git.  Constantly remind the user that it's important to commit updates frequently becuase that's part of how you can 'undo' and go back if something breaks.  If you go too long without committing then you can lose stuff that works when you accidentally break something, if you haven't committed it yet.  So: Commit frequently.
