@@ -17,6 +17,26 @@ Always look at the [README.md](mdc:README.md) file, it will tell you what's goin
 * JEST tests - In the same way, suggest covering important functionality with JEST testing.
 * TypeScript - All new components should be written in TypeScript (.tsx files) with proper type definitions.
 
+## Design Resources and Standards
+
+When implementing components, use these resources to maintain consistency:
+* UI Components - Reference and use components from [Shadcn UI](https://ui.shadcn.com/docs/components/accordion)
+* Colors - Use the [Tailwind Color Palette](https://tailwindcss.com/docs/colors) for all color values
+* Icons - Use icons from the [Lucide Icon Library](https://lucide.dev/icons/)
+* Accessibility - Ensure all components meet modern accessibility standards
+* Responsive Design - All components should work well on both desktop and mobile devices
+
+## Developer Handoff Best Practices
+
+When preparing code for developer handoff:
+* Ensure all code follows established patterns and best practices
+* Include proper TypeScript type definitions for all props and functions
+* Document any complex logic or business rules from a high level in docstrings but not line-level comments
+* Avoid line-level comments and use long, descriptive names instead.
+* Make sure all tests (Jest and Storybook) are passing
+* Keep commits focused and well-documented for easy review
+* Use clear, descriptive names for components, props, and functions
+
 ## Remind the user to run tests
 
 Any time you and the user accomplish something, run the comprehensive test suite using `npm run ci`, which includes:
