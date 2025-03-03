@@ -24,6 +24,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Install Playwright
+        run: npx playwright install --with-deps
+
       - name: Run TypeScript type checking
         run: npm run type-check
 
@@ -31,9 +34,10 @@ jobs:
         run: npm test
 
       - name: Build Storybook
-        run: npm run build-storybook
+        run: npm run build-storybook --quiet
 
-      - name: Run Storybook tests
-        run: npx test-storybook
-        env:
-          NODE_OPTIONS: --no-experimental-fetch # Ensure stable fetch behavior 
+      - name: Serve Storybook and run tests
+        run: |
+          npx concurrently -k -s first -n "SB,TEST" -c "magenta,blue" \
+            "npx http-server storybook-static --port 6006 --silent" \
+            "npx wait-on tcp:6006 && npx test-storybook" 
