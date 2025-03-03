@@ -66,8 +66,8 @@ const Documentation: React.FC<DocumentationProps> = ({ initialWidth = 0, testMod
 
   // Determine column count based on container width
   const getColumnClass = (): string => {
-    // Use two columns when container is wider than 768px
-    return containerWidth > 768 ? 'grid-cols-2' : 'grid-cols-1';
+    // Use two columns when container is wider than 640px (small breakpoint)
+    return containerWidth > 640 ? 'grid-cols-2' : 'grid-cols-1';
   };
 
   const suggestions: Suggestion[] = [
@@ -359,7 +359,7 @@ const Documentation: React.FC<DocumentationProps> = ({ initialWidth = 0, testMod
       </div>
       
       {/* Enterprise Solutions Section */}
-      <div className="mt-12 p-8 bg-gradient-to-br from-blue-50 to-sky-50 dark:from-blue-950 dark:to-sky-950 rounded-lg">
+      <div className="mt-12 p-4 sm:p-8 bg-gradient-to-br from-blue-50 to-sky-50 dark:from-blue-950 dark:to-sky-950 rounded-lg">
         <h3 className="text-2xl font-bold mb-4 text-blue-900 dark:text-blue-100">Launch Your App with Enterprise-Grade Excellence</h3>
         <p className="mb-6 text-slate-700 dark:text-slate-300 text-lg leading-relaxed">
           At Anthus AI Solutions, we excel at launching and operating applications that deliver real business value. With decades 
@@ -367,7 +367,7 @@ const Documentation: React.FC<DocumentationProps> = ({ initialWidth = 0, testMod
           reliability, and scalability that modern businesses demand.
         </p>
         
-        <div className="grid sm:grid-cols-2 gap-8 mb-8">
+        <div className={`grid ${getColumnClass()} gap-8 mb-8`}>
           <div className="space-y-4">
             <h4 className="text-lg font-semibold text-blue-800 dark:text-blue-200">Enterprise-Grade Operations</h4>
             <ul className="space-y-3">
