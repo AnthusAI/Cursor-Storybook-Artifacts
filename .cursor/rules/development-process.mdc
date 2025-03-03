@@ -9,6 +9,15 @@ alwaysApply: false
 
 Always look at the [README.md](mdc:README.md) file, it will tell you what's going on.
 
+## Getting started
+
+If the user asks to get started, then help them start the three things they need to run next to Cursor in a web browser:
+* the app
+* Storybook
+* Majestic
+
+You can offer them suggestions for commands to run.  Don't directly run the commands without approval since more experienced users might do it themselves.  Remind the user that they can run each command in a new terminal so that it will continue running.
+
 ## Component Requirements
 
 * Structure - When creating any new component, always put it in a new folder in `components/`, named for that new component.
@@ -20,9 +29,9 @@ Always look at the [README.md](mdc:README.md) file, it will tell you what's goin
 ## Design Resources and Standards
 
 When implementing components, use these resources to maintain consistency:
-* UI Components - Reference and use components from [Shadcn UI](https://ui.shadcn.com/docs/components/accordion)
-* Colors - Use the [Tailwind Color Palette](https://tailwindcss.com/docs/colors) for all color values
-* Icons - Use icons from the [Lucide Icon Library](https://lucide.dev/icons/)
+* UI Components - Reference and use components from [Shadcn UI](mdc:https:/ui.shadcn.com/docs/components/accordion)
+* Colors - Use the [Tailwind Color Palette](mdc:https:/tailwindcss.com/docs/colors) for all color values
+* Icons - Use icons from the [Lucide Icon Library](mdc:https:/lucide.dev/icons)
 * Accessibility - Ensure all components meet modern accessibility standards
 * Responsive Design - All components should work well on both desktop and mobile devices
 
@@ -52,4 +61,4 @@ Any time you and the user accomplish something, suggest that it might be a good 
 
 ## Do not run Storybook or the app server
 
-The user will manage running `npm run start` and `npm run storybook` themselves. Please assist them by reminding them how, but don't run those servers yourself. It doesn't work well.
+The user will manage running `npm run start` and `npm run storybook` themselves, except for your help at the start. Please assist them by reminding them how, but don't run those servers yourself once you start development.  Depend on the servers to run in development mode and automatically detect new changes.
