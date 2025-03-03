@@ -4,6 +4,8 @@
 
 **Vibe Coding Workbench** is a curated development framework that helps you build production-ready web applications using [Cursor](https://cursor.sh)'s powerful AI capabilities. While tools like Claude Artifacts, v0.dev, and Bolt.new offer AI-driven development, Vibe Coding Workbench takes a different approach: it provides a carefully selected set of technologies, opinions, and best practices for using Cursor to create web components that deliver real business value and can be seamlessly integrated into production applications.
 
+For a detailed exploration of the philosophy and methodology behind Vibe Coding, read [The Vibe Coding Client](https://anth.us/blog/vibe-coding-client/).
+
 ### Built on Cursor's AI Technology
 
 This project doesn't provide new AI technology - instead, it leverages Cursor's existing AI capabilities and enhances them with:
