@@ -1,9 +1,6 @@
 import fs from 'fs';
 import path from 'path';
 
-// Static list of components
-// This list should be updated when new components are added to the project
-
 // Component directories to exclude from the sidebar
 const EXCLUDED_COMPONENT_DIRS = [
   'PlaygroundLayout',
@@ -13,12 +10,15 @@ const EXCLUDED_COMPONENT_DIRS = [
   'ui'
 ];
 
-// This list is automatically generated during build time
-// The actual components will be discovered through webpack's require.context
-const AVAILABLE_COMPONENTS = [
-  'HelloWorld',
-  'PaymentDashboard'
-];
+// Type declaration for Webpack's require.context
+declare const require: {
+  context: (directory: string, useSubdirectories: boolean, regExp: RegExp) => {
+    keys(): string[];
+    (id: string): any;
+    resolve(id: string): string;
+    id: string;
+  };
+};
 
 /**
  * Get a list of component directories from the components folder
@@ -30,15 +30,34 @@ export function getComponentList() {
     children?: { name: string }[];
   }[] = [];
   
-  // Filter out excluded directories and add remaining ones to the list
-  AVAILABLE_COMPONENTS.forEach(dir => {
-    if (!EXCLUDED_COMPONENT_DIRS.includes(dir)) {
-      items.push({ name: dir });
-    }
-  });
-  
-  // Sort items alphabetically
-  return items.sort((a, b) => a.name.localeCompare(b.name));
+  try {
+    // Use Webpack's require.context to get all component files
+    const componentContext = require.context('../components', true, /\.tsx$/);
+    
+    // Get all component paths
+    const componentPaths = componentContext.keys();
+    
+    // Extract unique component names from paths
+    const componentNames = new Set<string>();
+    componentPaths.forEach((path: string) => {
+      // Extract component name from path (e.g., './ComponentName/ComponentName.tsx')
+      const match = path.match(/\.\/([^/]+)\/\1\.tsx$/);
+      if (match) {
+        const componentName = match[1];
+        if (!EXCLUDED_COMPONENT_DIRS.includes(componentName)) {
+          componentNames.add(componentName);
+        }
+      }
+    });
+    
+    // Convert to array and sort
+    return Array.from(componentNames)
+      .map(name => ({ name }))
+      .sort((a, b) => a.name.localeCompare(b.name));
+  } catch (error) {
+    console.error('Error discovering components:', error);
+    return [];
+  }
 }
 
 /**

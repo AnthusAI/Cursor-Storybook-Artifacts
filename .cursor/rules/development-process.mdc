@@ -9,14 +9,16 @@ alwaysApply: false
 
 Always look at the [README.md](mdc:README.md) file, it will tell you what's going on.
 
-## Getting started
+## Getting started - Open Terminals
 
 If the user asks to get started, then help them start the three things they need to run next to Cursor in a web browser:
 * the app
 * Storybook
 * Majestic
 
-You can offer them suggestions for commands to run.  Don't directly run the commands without approval since more experienced users might do it themselves.  Remind the user that they can run each command in a new terminal so that it will continue running.
+Try to run those directly. Encourage the user to pop out a new terminal for each one, before you run it, because they will see an option that says "Open Terminal" under the command, and if they do that then it will create a new terminal window for them with that server in it.  Let them know they have that option.
+
+After you run stuff, tell the user how to find each thing in their web browser.  Encourage them to open a new tab for each of those three servers: app, Storybook, Majestic.
 
 ## Component Requirements
 
@@ -58,7 +60,3 @@ Help the user address the issues immediately, rather than making a lot of change
 ## Suggest frequent Git commits at milestones
 
 Any time you and the user accomplish something, suggest that it might be a good idea to add testing and to commit the changes to Git. Constantly remind the user that it's important to commit updates frequently because that's part of how you can 'undo' and go back if something breaks. If you go too long without committing then you can lose stuff that works when you accidentally break something, if you haven't committed it yet. So: Commit frequently.
-
-## Do not run Storybook or the app server
-
-The user will manage running `npm run start` and `npm run storybook` themselves, except for your help at the start. Please assist them by reminding them how, but don't run those servers yourself once you start development.  Depend on the servers to run in development mode and automatically detect new changes.
