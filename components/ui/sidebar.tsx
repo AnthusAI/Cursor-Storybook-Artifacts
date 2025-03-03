@@ -63,7 +63,7 @@ export function Sidebar({
     <div
       ref={sidebarRef}
       className={cn(
-        "h-full bg-slate-50 dark:bg-slate-950 border-r border-slate-200 dark:border-slate-800 relative transition-all duration-200",
+        "h-full bg-slate-100 dark:bg-slate-900 border-r border-border relative transition-all duration-200",
         className
       )}
       style={{ 
@@ -74,13 +74,13 @@ export function Sidebar({
       {...props}
     >
       <div className="p-4" style={{ opacity: width < 40 ? 0 : 1 }}>
-        <h2 className="text-lg font-semibold mb-4">Components</h2>
+        <h2 className="text-lg font-semibold mb-4 truncate">Components</h2>
         <nav className="space-y-1">
           {items.map((item) => (
             <div key={item.name} className="mb-2">
               <button
                 onClick={() => onSelectComponent(item.name)}
-                className="w-full text-left px-3 py-2 text-sm rounded-md hover:bg-slate-100 dark:hover:bg-slate-800"
+                className="w-full text-left px-3 py-2 text-sm rounded-md hover:bg-accent text-foreground/60 hover:text-foreground truncate"
               >
                 {item.name}
               </button>
@@ -91,14 +91,14 @@ export function Sidebar({
 
       {/* Resize Handle */}
       <div
-        className="absolute top-0 right-0 w-3 h-full cursor-col-resize hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+        className="absolute top-0 right-0 w-3 h-full cursor-col-resize hover:bg-accent transition-colors"
         onMouseDown={handleMouseDown}
       >
         <div className="absolute top-1/2 right-0 -translate-y-1/2 h-16 w-full flex items-center justify-center">
           <div className="resize-handle-dots flex flex-col items-center justify-center gap-1">
-            <div className="w-1 h-1 rounded-full bg-slate-400 dark:bg-slate-500" />
-            <div className="w-1 h-1 rounded-full bg-slate-400 dark:bg-slate-500" />
-            <div className="w-1 h-1 rounded-full bg-slate-400 dark:bg-slate-500" />
+            <div className="w-1 h-1 rounded-full bg-muted-foreground/40" />
+            <div className="w-1 h-1 rounded-full bg-muted-foreground/40" />
+            <div className="w-1 h-1 rounded-full bg-muted-foreground/40" />
           </div>
         </div>
       </div>

@@ -89,7 +89,7 @@ const ContentArea: React.FC = () => {
       
       {/* Component Display Area */}
       <div className="flex-grow p-2">
-        <div className="h-full bg-white dark:bg-slate-800 flex items-center justify-center">
+        <div className="h-full bg-slate-100 dark:bg-slate-900 flex items-center justify-center">
           {isLoading ? (
             <div className="text-center">
               <p>Loading component...</p>
@@ -103,7 +103,7 @@ const ContentArea: React.FC = () => {
               <DynamicComponent />
             </Suspense>
           ) : (
-            <div className="text-center text-slate-500 dark:text-slate-400">
+            <div className="text-center text-muted-foreground">
               <p>Select a component from the sidebar</p>
             </div>
           )}
