@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Quote, ExternalLink } from 'lucide-react';
+import { Quote, ExternalLink, CheckCircle, ArrowRight, Rocket } from 'lucide-react';
 
 // Define types for the component props
 interface DocumentationProps {
@@ -71,14 +71,7 @@ const Documentation: React.FC<DocumentationProps> = ({ initialWidth = 0, testMod
   };
 
   const suggestions: Suggestion[] = [
-    {
-      prompt: "Change the primary button color to indigo",
-      title: "Change component colors",
-      description: "Modify the color scheme of UI components to match your brand or design preferences.",
-      docLink: "https://tailwindcss.com/docs/colors",
-      docLinkText: "Tailwind Color Palette",
-      docDescription: "Like a restaurant menu for colors the AI understands"
-    },
+    // Section 1: Creative Component Development
     {
       prompt: "Create a new pagination component with next/previous buttons",
       title: "Create a new component",
@@ -86,6 +79,14 @@ const Documentation: React.FC<DocumentationProps> = ({ initialWidth = 0, testMod
       docLink: "https://ui.shadcn.com/docs/components/accordion",
       docLinkText: "Shadcn UI Components",
       docDescription: "A menu of different components you can add to your project"
+    },
+    {
+      prompt: "Change the primary button color to indigo",
+      title: "Change component colors",
+      description: "Modify the color scheme of UI components to match your brand or design preferences.",
+      docLink: "https://tailwindcss.com/docs/colors",
+      docLinkText: "Tailwind Color Palette",
+      docDescription: "Like a restaurant menu for colors the AI understands"
     },
     {
       prompt: "Change the icon on the card component to brain-circuit",
@@ -101,65 +102,85 @@ const Documentation: React.FC<DocumentationProps> = ({ initialWidth = 0, testMod
       description: "Build interactive modal components for forms, alerts, or confirmations with proper focus management."
     },
     {
-      prompt: "Add a bar chart component that displays monthly sales data",
-      title: "Add a chart component",
-      description: "Integrate data visualization components to represent statistics or metrics in a visual format."
-    },
-    {
       prompt: "Add email and password validation to the login form",
       title: "Add form validation",
       description: "Implement client-side validation for form inputs with appropriate error messages and feedback."
+    },
+    // Section 2: Sharing with Developers
+    {
+      prompt: "I want to start working on a new feature for the dashboard",
+      title: "Create a new feature branch",
+      description: "Start working on a new feature in a separate branch to keep your changes organized.",
+      docDescription: "Learn how to manage your work with Git branches"
+    },
+    {
+      prompt: "Show me what branch I'm currently on",
+      title: "Check your current branch",
+      description: "View your current working branch and see all available branches.",
+      docDescription: "Stay oriented in your Git workspace"
+    },
+    {
+      prompt: "Save my changes with a message explaining the new navigation menu",
+      title: "Save your work (commit)",
+      description: "Save your changes with a clear message describing what you did.",
+      docDescription: "Document your progress with Git commits"
+    },
+    {
+      prompt: "Share my navigation menu changes on GitHub",
+      title: "Share with developers (push)",
+      description: "Share your work with the development team by pushing to GitHub.",
+      docDescription: "Collaborate with your team through GitHub"
     }
   ];
 
   const resources: Resource[] = [
     {
-      name: "Shadcn UI",
-      url: "https://ui.shadcn.com",
-      description: "Beautifully designed components built with Radix UI and Tailwind CSS.",
-      category: "UI Components"
-    },
-    {
-      name: "Lucide Icons",
-      url: "https://lucide.dev",
-      description: "Beautiful & consistent icon toolkit made by the community.",
-      category: "Icons"
-    },
-    {
-      name: "Tailwind CSS",
-      url: "https://tailwindcss.com",
-      description: "A utility-first CSS framework for rapidly building custom designs.",
-      category: "CSS Framework"
-    },
-    {
-      name: "TypeScript",
-      url: "https://www.typescriptlang.org",
-      description: "Adds error-checking to JavaScript, catching issues early and reducing costly bugs before they reach production.",
-      category: "Programming Language"
-    },
-    {
-      name: "React",
-      url: "https://react.dev",
-      description: "A JavaScript library for building user interfaces.",
-      category: "JavaScript Library"
-    },
-    {
       name: "Storybook",
       url: "https://storybook.js.org",
-      description: "Frontend workshop for building UI components and pages in isolation.",
-      category: "Development Tool"
-    },
-    {
-      name: "Jest",
-      url: "https://jestjs.io",
-      description: "A delightful JavaScript testing framework with a focus on simplicity.",
-      category: "Testing Framework"
+      description: "A visual catalog where you can see and interact with each piece of your application in isolation. This makes it easy to review designs, test functionality, and communicate your vision to developers without needing to understand code.",
+      category: "Design & Testing"
     },
     {
       name: "Majestic",
       url: "https://github.com/Raathigesh/majestic",
-      description: "A user-friendly visual interface for running tests without needing to understand command-line tools.",
-      category: "Testing Tool"
+      description: "A user-friendly dashboard that shows you if everything in your application is working correctly. It turns complex technical tests into simple green (working) or red (needs attention) indicators that anyone can understand.",
+      category: "Quality Assurance"
+    },
+    {
+      name: "Shadcn UI",
+      url: "https://ui.shadcn.com",
+      description: "A collection of pre-built, professional-looking components that ensure your application follows modern design standards. Think of it as a library of building blocks that have already been tested and refined for optimal user experience.",
+      category: "Design System"
+    },
+    {
+      name: "Tailwind CSS",
+      url: "https://tailwindcss.com",
+      description: "A design system that makes it easy to create consistent, professional-looking interfaces. Instead of writing complex design code, you can use simple, human-readable terms to describe how you want things to look.",
+      category: "Design Framework"
+    },
+    {
+      name: "Lucide Icons",
+      url: "https://lucide.dev",
+      description: "A comprehensive collection of modern, consistent icons that help make your application more intuitive and professional. These icons are designed to work seamlessly across all devices and screen sizes.",
+      category: "Visual Elements"
+    },
+    {
+      name: "TypeScript",
+      url: "https://www.typescriptlang.org",
+      description: "A safeguard system that catches potential problems before they can affect your users. It helps ensure your application remains reliable and maintainable as it grows, reducing costly bugs and maintenance issues.",
+      category: "Code Quality"
+    },
+    {
+      name: "React",
+      url: "https://react.dev",
+      description: "The foundation that powers many of the world's most successful web applications. It enables smooth, app-like experiences that users expect from modern software, while ensuring your application can grow without becoming difficult to maintain.",
+      category: "Core Technology"
+    },
+    {
+      name: "Jest",
+      url: "https://jestjs.io",
+      description: "An automated testing system that helps ensure new changes don't break existing features. It provides confidence that your application will continue working reliably as it evolves.",
+      category: "Quality Assurance"
     }
   ];
 
@@ -169,16 +190,29 @@ const Documentation: React.FC<DocumentationProps> = ({ initialWidth = 0, testMod
       <div className="mb-8">
         <h2 className="text-xl font-bold mb-3">Transform Your Business Ideas into Working Software</h2>
         <p className="mb-4 text-slate-700 dark:text-slate-300">
-          Vibe Coding Workbench is a starter kit designed specifically for business leaders with a vision. 
-          Instead of getting caught in endless design cycles and development delays, you can rapidly create 
-          functional prototypes that demonstrate real business value. These prototypes are built on solid 
-          foundations that professional developers can easily refine and integrate into production systems.
+          Vibe Coding Workbench is a <b>starter kit designed for business leaders</b>.  You have ideas about apps that
+          could deliver business value, but sometimes the time and expense of working with designers and developers to prototype
+          new ideas is just too much.
+        </p> 
+        <p className="mb-4 text-slate-700 dark:text-slate-300">
+          Instead of getting caught in endless design cycles working on Figma mockups and then handing the designs off
+          to developers to implement, going back and forth across time zones — you can instead <b>rapidly create 
+          functional prototypes that demonstrate real business value</b>.
+        </p>
+        <p className="mb-4 text-slate-700 dark:text-slate-300">
+          With "vibe coding", you can create something in an afternoon that expresses your vision.
+          But you need a <b>smooth way to hand off the prototype to developers</b> who can then refine it into a production-ready
+          application, rather than handing them a problem to clean up, from some late-night v0.dev session or something.
+        </p>
+        <p className="mb-4 text-slate-700 dark:text-slate-300">
+          These prototypes are <b>built on solid foundations with best practices and agile principles at their core</b>, 
+          making them <b>easy for professional developers to refine and integrate into production systems</b>.
         </p>
         
         <p className="mb-4 text-slate-700 dark:text-slate-300">
-          When you've created something valuable with Vibe Coding and need help taking it to the next level, 
+          When you've created something valuable with vibe coding and need help taking it to the next level, 
           <a href="https://anth.us" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline"> Anthus AI Solutions</a> provides 
-          the expertise to help you launch, deploy, and operate your application with enterprise-grade quality.
+          the expertise to help you deploy and operate your application with enterprise-level sophistication.
         </p>
         
         <h3 className="text-lg font-medium mb-2">Features:</h3>
@@ -235,9 +269,47 @@ const Documentation: React.FC<DocumentationProps> = ({ initialWidth = 0, testMod
       
       {/* Suggestions Section */}
       <div className="mb-8">
-        <h3 className="text-lg font-medium mb-4">Suggestions</h3>
+        <h3 className="text-xl font-bold mb-6">How to Get Creative with AI Assistance</h3>
         <div className={`grid ${getColumnClass()} gap-4`}>
-          {suggestions.map((suggestion, index) => (
+          {suggestions.slice(0, 5).map((suggestion, index) => (
+            <div 
+              key={index} 
+              className="bg-sky-100 dark:bg-sky-950 p-5 rounded-lg"
+            >
+              <h4 className="text-lg font-medium mb-3">{suggestion.title}</h4>
+              <div className="mb-4">
+                <div className="flex items-start gap-2 mb-2">
+                  <Quote className="h-5 w-5 text-blue-500 mt-1 flex-shrink-0" />
+                  <p className="text-base italic bg-white dark:bg-slate-800 p-3 rounded-md border-l-2 border-blue-400 dark:border-blue-500">
+                    "{suggestion.prompt}"
+                  </p>
+                </div>
+              </div>
+              <p className="text-sm text-slate-600 dark:text-slate-400 mb-2">{suggestion.description}</p>
+              {suggestion.docLink && (
+                <div className="mt-2">
+                  <a 
+                    href={suggestion.docLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 dark:text-blue-400 hover:underline text-sm block"
+                  >
+                    {suggestion.docLinkText || "View documentation"}
+                  </a>
+                  {suggestion.docDescription && (
+                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                      {suggestion.docDescription}
+                    </p>
+                  )}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+
+        <h3 className="text-xl font-bold mb-6 mt-12">How to Share Your Creations with Your Developers</h3>
+        <div className={`grid ${getColumnClass()} gap-4`}>
+          {suggestions.slice(5).map((suggestion, index) => (
             <div 
               key={index} 
               className="bg-sky-100 dark:bg-sky-950 p-5 rounded-lg"
@@ -276,7 +348,7 @@ const Documentation: React.FC<DocumentationProps> = ({ initialWidth = 0, testMod
 
       {/* Technologies Section */}
       <div>
-        <h3 className="text-lg font-medium mb-4">Technologies</h3>
+        <h3 className="text-xl font-bold mb-6">Technology Stack</h3>
         <div className={`grid ${getColumnClass()} gap-4`}>
           {resources.map((resource, index) => (
             <a 
@@ -289,46 +361,82 @@ const Documentation: React.FC<DocumentationProps> = ({ initialWidth = 0, testMod
               <div className="mb-1">
                 <span className="text-xs text-slate-500 dark:text-slate-400">{resource.category}</span>
               </div>
-              <h4 className="text-lg font-medium mb-1 text-blue-600 dark:text-blue-400">{resource.name}</h4>
-              <p className="text-sm text-slate-600 dark:text-slate-400">{resource.description}</p>
+              <h4 className="text-lg font-medium mb-2 text-blue-600 dark:text-blue-400">{resource.name}</h4>
+              <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">{resource.description}</p>
             </a>
           ))}
         </div>
       </div>
       
-      {/* Contact Section */}
-      <div className="mt-12 p-6 bg-blue-50 dark:bg-blue-950 rounded-lg">
-        <h3 className="text-lg font-medium mb-3">Need Help with Your Project?</h3>
-        <p className="mb-4 text-slate-700 dark:text-slate-300">
-          Vibe Coding is designed to empower developers, not replace them. When you've created a valuable prototype 
-          and are ready to take it to the next level, Anthus AI Solutions can help bridge the gap between prototype 
-          and production with decades of experience in enterprise-level application development and operations.
+      {/* Enterprise Solutions Section */}
+      <div className="mt-12 p-8 bg-gradient-to-br from-blue-50 to-sky-50 dark:from-blue-950 dark:to-sky-950 rounded-lg">
+        <h3 className="text-2xl font-bold mb-4 text-blue-900 dark:text-blue-100">Launch Your App with Enterprise-Grade Excellence</h3>
+        <p className="mb-6 text-slate-700 dark:text-slate-300 text-lg leading-relaxed">
+          At Anthus AI Solutions, we excel at launching and operating applications that deliver real business value. With decades 
+          of experience in enterprise-level deployment and operations, we ensure your application runs with the sophistication, 
+          reliability, and scalability that modern businesses demand.
         </p>
         
-        <div className="flex flex-col sm:flex-row gap-6 mt-4">
-          <div>
-            <h4 className="text-md font-medium mb-2">Our Services</h4>
-            <ul className="list-disc pl-5 text-slate-700 dark:text-slate-300 space-y-1">
-              <li>Seamless developer collaboration</li>
-              <li>Enterprise-grade deployment</li>
-              <li>Regulatory compliance (HIPAA, SOC2, etc.)</li>
-              <li>24/7 operational support</li>
-              <li>Strategic AI implementation</li>
+        <div className="grid sm:grid-cols-2 gap-8 mb-8">
+          <div className="space-y-4">
+            <h4 className="text-lg font-semibold text-blue-800 dark:text-blue-200">Enterprise-Grade Operations</h4>
+            <ul className="space-y-3">
+              <li className="flex items-start gap-2">
+                <CheckCircle className="h-5 w-5 text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
+                <span className="text-slate-700 dark:text-slate-300">Advanced monitoring and automated deployment systems</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle className="h-5 w-5 text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
+                <span className="text-slate-700 dark:text-slate-300">Robust change management and validation</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle className="h-5 w-5 text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
+                <span className="text-slate-700 dark:text-slate-300">24/7 operational support and incident response</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle className="h-5 w-5 text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
+                <span className="text-slate-700 dark:text-slate-300">Regulatory compliance (GDPR, CCPA, SOC2)</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle className="h-5 w-5 text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
+                <span className="text-slate-700 dark:text-slate-300">AI-enhanced operations (ChatOps)</span>
+              </li>
             </ul>
           </div>
           
-          <div>
-            <h4 className="text-md font-medium mb-2">Contact Us</h4>
-            <a 
-              href="https://anth.us" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:underline"
-            >
-              <ExternalLink className="h-4 w-4" />
-              Visit anth.us
-            </a>
+          <div className="space-y-4">
+            <h4 className="text-lg font-semibold text-blue-800 dark:text-blue-200">Business Transformation</h4>
+            <ul className="space-y-3">
+              <li className="flex items-start gap-2">
+                <ArrowRight className="h-5 w-5 text-blue-500 mt-0.5 flex-shrink-0" />
+                <span className="text-slate-700 dark:text-slate-300">Strategic consulting on business-developer collaboration</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <ArrowRight className="h-5 w-5 text-blue-500 mt-0.5 flex-shrink-0" />
+                <span className="text-slate-700 dark:text-slate-300">Seamless integration of prototypes into production</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <ArrowRight className="h-5 w-5 text-blue-500 mt-0.5 flex-shrink-0" />
+                <span className="text-slate-700 dark:text-slate-300">Scalable infrastructure that grows with your needs</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <ArrowRight className="h-5 w-5 text-blue-500 mt-0.5 flex-shrink-0" />
+                <span className="text-slate-700 dark:text-slate-300">Strategic AI implementation for business value</span>
+              </li>
+            </ul>
           </div>
+        </div>
+
+        <div className="flex justify-center">
+          <a 
+            href="https://anth.us" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors"
+          >
+            <Rocket className="h-5 w-5" />
+            Launch Your Enterprise Application
+          </a>
         </div>
       </div>
     </div>

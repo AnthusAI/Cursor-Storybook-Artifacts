@@ -19,11 +19,6 @@ const DocumentationHeader: React.FC = () => (
       <ThemeToggle />
     </div>
     <h1 className="text-2xl font-bold mb-2 pr-10">Vibe Coding Workbench</h1>
-    <p className="text-slate-600 dark:text-slate-400">
-      A powerful starter kit for business leaders with a vision. Transform your business ideas into 
-      functional prototypes without coding expertise. Create working software that developers can 
-      easily refine and integrate, with best practices and agile principles built in at the core.
-    </p>
   </div>
 );
 
