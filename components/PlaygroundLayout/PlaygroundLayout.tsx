@@ -27,11 +27,43 @@ const PlaygroundLayout: React.FC<PlaygroundLayoutProps> = ({ contentArea, docume
   const containerRef = useRef<HTMLDivElement>(null);
   const dragHandleRef = useRef<HTMLDivElement>(null);
   const docContainerRef = useRef<HTMLDivElement>(null);
+  const [isDocumentationCollapsed, setIsDocumentationCollapsed] = useState<boolean>(false);
+  const [lastExpandedWidth, setLastExpandedWidth] = useState<number>(50);
 
   // Handle mouse down on the drag handle
   const handleMouseDown = (e: React.MouseEvent): void => {
     e.preventDefault();
-    setIsDragging(true);
+    // Only start dragging on mouse move
+    const initialX = e.clientX;
+    const moveThreshold = 5; // pixels
+    
+    const handleInitialMove = (moveEvent: MouseEvent) => {
+      if (Math.abs(moveEvent.clientX - initialX) > moveThreshold) {
+        setIsDragging(true);
+        document.removeEventListener('mousemove', handleInitialMove);
+      }
+    };
+    
+    document.addEventListener('mousemove', handleInitialMove);
+    document.addEventListener('mouseup', () => {
+      document.removeEventListener('mousemove', handleInitialMove);
+    }, { once: true });
+  };
+
+  // Handle click on the resize handle
+  const handleClick = () => {
+    if (isDragging) return; // Don't handle click if we were dragging
+    
+    if (leftPanelWidth >= 99.5) {
+      // If collapsed, expand to last known width or default to 50%
+      setLeftPanelWidth(lastExpandedWidth);
+      setIsDocumentationCollapsed(false);
+    } else {
+      // If expanded, save current width and collapse
+      setLastExpandedWidth(leftPanelWidth);
+      setLeftPanelWidth(99.5);
+      setIsDocumentationCollapsed(true);
+    }
   };
 
   // Handle mouse move to resize panels
@@ -90,6 +122,20 @@ const PlaygroundLayout: React.FC<PlaygroundLayoutProps> = ({ contentArea, docume
     };
   }, []);
 
+  // Handle documentation toggle
+  useEffect(() => {
+    const handleToggleDocumentation = () => {
+      // Always collapse when X is clicked
+      setLeftPanelWidth(99.5);
+      setIsDocumentationCollapsed(true);
+    };
+
+    window.addEventListener('toggleDocumentation', handleToggleDocumentation);
+    return () => {
+      window.removeEventListener('toggleDocumentation', handleToggleDocumentation);
+    };
+  }, []);
+
   // Only pass containerWidth prop to React components that can accept it
   const documentationWithWidth = React.isValidElement(documentationArea) && 
     typeof documentationArea.type === 'function' ? 
@@ -118,6 +164,7 @@ const PlaygroundLayout: React.FC<PlaygroundLayoutProps> = ({ contentArea, docume
         ref={dragHandleRef}
         className="resize-handle cursor-col-resize"
         onMouseDown={handleMouseDown}
+        onClick={handleClick}
       >
         <div className="resize-handle-dots">
           <div className="dot"></div>
@@ -132,8 +179,8 @@ const PlaygroundLayout: React.FC<PlaygroundLayoutProps> = ({ contentArea, docume
         className="documentation-container bg-slate-100 dark:bg-slate-900 rounded-xl p-4 shadow-sm overflow-y-auto transition-all duration-200"
         style={{ 
           width: `${100 - leftPanelWidth}%`,
-          minWidth: leftPanelWidth === 100 ? 0 : undefined,
-          padding: leftPanelWidth === 100 ? 0 : undefined
+          padding: leftPanelWidth >= 99.5 ? 0 : undefined,
+          opacity: leftPanelWidth >= 99.5 ? 0 : 1
         }}
       >
         {documentationWithWidth}

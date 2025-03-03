@@ -84,7 +84,7 @@ const ContentArea: React.FC = () => {
         items={componentList} 
         onSelectComponent={handleSelectComponent}
         className="flex-shrink-0"
-        defaultWidth={160}
+        defaultWidth={240}
       />
       
       {/* Component Display Area */}

@@ -15,10 +15,34 @@ import './globals.css';
  */
 const DocumentationHeader: React.FC = () => (
   <div className="mb-6 relative">
-    <div className="absolute top-0 right-0">
+    <div className="absolute top-0 right-0 flex gap-2">
       <ThemeToggle />
+      <button
+        onClick={() => {
+          // We'll handle this in the parent component
+          const event = new CustomEvent('toggleDocumentation');
+          window.dispatchEvent(event);
+        }}
+        className="rounded-full relative w-10 h-10 inline-flex items-center justify-center border border-input bg-background hover:bg-accent hover:text-accent-foreground"
+        aria-label="Close documentation"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M18 6 6 18" />
+          <path d="m6 6 12 12" />
+        </svg>
+      </button>
     </div>
-    <h1 className="text-2xl font-bold mb-2 pr-10">Vibe Coding Workbench</h1>
+    <h1 className="text-2xl font-bold mb-2 pr-20">Vibe Coding Workbench</h1>
   </div>
 );
 
