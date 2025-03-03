@@ -78,7 +78,7 @@ const ContentArea: React.FC = () => {
   };
 
   return (
-    <div className="content-area h-full flex">
+    <div className="content-area h-full flex bg-slate-100 dark:bg-slate-900">
       {/* Sidebar */}
       <Sidebar 
         items={componentList} 
@@ -88,8 +88,8 @@ const ContentArea: React.FC = () => {
       />
       
       {/* Component Display Area */}
-      <div className="flex-grow p-2">
-        <div className="h-full bg-slate-100 dark:bg-slate-900 flex items-center justify-center">
+      <div className="flex-grow pl-2 pt-0 pr-0 pb-0">
+        <div className="h-full bg-white dark:bg-slate-800 flex items-center justify-center rounded-lg">
           {isLoading ? (
             <div className="text-center">
               <p>Loading component...</p>
