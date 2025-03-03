@@ -42,9 +42,19 @@ export const WithDifferentData: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     
-    // Verify custom data points are displayed
-    await expect(canvas.getByText('Aug')).toBeInTheDocument();
-    await expect(canvas.getByText('Sep')).toBeInTheDocument();
-    await expect(canvas.getByText('Oct')).toBeInTheDocument();
+    // Wait for chart to render
+    await new Promise(resolve => setTimeout(resolve, 100));
+    
+    // Verify the chart container exists
+    await expect(canvas.getByText('Payment Volume')).toBeInTheDocument();
+    
+    // Get all text elements in the SVG
+    const textElements = canvasElement.querySelectorAll('text.recharts-text');
+    const textContent = Array.from(textElements).map(el => el.textContent);
+    
+    // Verify our data points are present in the text elements
+    expect(textContent).toContain('Aug');
+    expect(textContent).toContain('Sep');
+    expect(textContent).toContain('Oct');
   },
 }; 
