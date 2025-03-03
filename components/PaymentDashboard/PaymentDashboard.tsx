@@ -13,8 +13,8 @@ const PaymentDashboard: React.FC = () => {
     <div className="min-h-screen bg-background p-6">
       <h1 className="text-2xl font-bold mb-6">Payment Dashboard</h1>
       
-      <div className="@container">
-        <div className="grid grid-cols-1 @[600px]:grid-cols-2 @[900px]:grid-cols-4 gap-4 mb-8">
+      <div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mb-8">
           {/* Revenue Card */}
           <Card className="p-4">
             <div className="flex items-center justify-between mb-2">

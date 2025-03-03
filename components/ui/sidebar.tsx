@@ -7,6 +7,7 @@ export interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
   }[];
   onSelectComponent: (componentName: string) => void;
   defaultWidth?: number;
+  selectedComponent?: string | null;
 }
 
 /**
@@ -21,6 +22,7 @@ export function Sidebar({
   items,
   onSelectComponent,
   defaultWidth = 400,
+  selectedComponent,
   ...props
 }: SidebarProps) {
   const [width, setWidth] = useState(defaultWidth);
@@ -134,7 +136,13 @@ export function Sidebar({
             <div key={item.name} className="mb-2">
               <button
                 onClick={() => onSelectComponent(item.name)}
-                className="w-full text-left px-3 py-2 text-sm rounded-md hover:bg-accent text-foreground/60 hover:text-foreground truncate"
+                className={cn(
+                  "w-full text-left px-3 py-2 text-sm rounded-md transition-colors",
+                  selectedComponent === item.name
+                    ? "bg-primary/10 text-primary font-medium"
+                    : "hover:bg-accent text-foreground/60 hover:text-foreground",
+                  "truncate"
+                )}
               >
                 {item.name}
               </button>

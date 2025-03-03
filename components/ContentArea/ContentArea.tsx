@@ -6,6 +6,9 @@ import { getComponentList } from '../../lib/component-utils';
 // Import the HelloWorld component directly as a fallback
 import HelloWorld from '../HelloWorld/HelloWorld';
 
+// Local storage key for selected component
+const SELECTED_COMPONENT_KEY = 'vibe-workbench-selected-component';
+
 /**
  * ContentArea Component
  * 
@@ -20,16 +23,22 @@ const ContentArea: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Load the component list on mount
+  // Load the component list and restore selected component from localStorage
   useEffect(() => {
     try {
       const components = getComponentList();
       setComponentList(components);
       
-      // Default to HelloWorld if available
-      const helloWorldItem = components.find(item => item.name === 'HelloWorld');
-      if (helloWorldItem) {
-        handleSelectComponent('HelloWorld');
+      // Try to restore selected component from localStorage
+      const savedComponent = localStorage.getItem(SELECTED_COMPONENT_KEY);
+      if (savedComponent && components.some(item => item.name === savedComponent)) {
+        handleSelectComponent(savedComponent);
+      } else {
+        // Default to HelloWorld if available, or first component if not
+        const defaultComponent = components.find(item => item.name === 'HelloWorld')?.name || components[0]?.name;
+        if (defaultComponent) {
+          handleSelectComponent(defaultComponent);
+        }
       }
     } catch (err) {
       console.error('Failed to load component list:', err);
@@ -44,6 +53,9 @@ const ContentArea: React.FC = () => {
     setError(null);
 
     try {
+      // Save selection to localStorage
+      localStorage.setItem(SELECTED_COMPONENT_KEY, componentName);
+
       // Special case for HelloWorld which is imported directly
       if (componentName === 'HelloWorld') {
         setDynamicComponent(() => HelloWorld);
@@ -72,6 +84,8 @@ const ContentArea: React.FC = () => {
       console.error(`Failed to load component ${componentName}:`, err);
       setError(`Failed to load component ${componentName}: ${err instanceof Error ? err.message : 'Unknown error'}`);
       setDynamicComponent(null);
+      // Remove from localStorage if component failed to load
+      localStorage.removeItem(SELECTED_COMPONENT_KEY);
     } finally {
       setIsLoading(false);
     }
@@ -85,6 +99,7 @@ const ContentArea: React.FC = () => {
         onSelectComponent={handleSelectComponent}
         className="flex-shrink-0"
         defaultWidth={240}
+        selectedComponent={selectedComponent}
       />
       
       {/* Component Display Area */}
