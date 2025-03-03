@@ -50,7 +50,7 @@ const DocumentationArea: React.FC<DocumentationAreaProps> = ({ containerWidth })
 const App: React.FC = () => {
   return (
     <ThemeProvider defaultTheme="system">
-      <div className="app-container min-h-screen h-screen w-screen overflow-hidden bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-slate-50 p-2 flex flex-col">
+      <div className="app-container min-h-screen h-screen w-screen overflow-hidden bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-slate-50 p-1 flex flex-col">
         <main className="flex-grow overflow-hidden">
           <PlaygroundLayout 
             contentArea={<ContentArea />}

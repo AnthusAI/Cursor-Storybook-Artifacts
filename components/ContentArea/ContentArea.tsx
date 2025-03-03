@@ -84,19 +84,12 @@ const ContentArea: React.FC = () => {
         items={componentList} 
         onSelectComponent={handleSelectComponent}
         className="flex-shrink-0"
+        defaultWidth={160}
       />
       
       {/* Component Display Area */}
-      <div className="flex-grow p-6 overflow-auto">
-        <div className="mb-4">
-          {selectedComponent && (
-            <h2 className="text-xl font-semibold">
-              {selectedComponent}
-            </h2>
-          )}
-        </div>
-        
-        <div className="bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 p-6 min-h-[300px] flex items-center justify-center">
+      <div className="flex-grow p-2">
+        <div className="h-full bg-white dark:bg-slate-800 flex items-center justify-center">
           {isLoading ? (
             <div className="text-center">
               <p>Loading component...</p>

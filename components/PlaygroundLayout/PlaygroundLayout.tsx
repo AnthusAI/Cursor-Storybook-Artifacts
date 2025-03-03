@@ -17,7 +17,7 @@ interface WithContainerWidth {
  * A two-column layout with a content area on the left and documentation on the right.
  * Uses a flat design with slate backgrounds and content areas.
  * Includes a draggable resize thumb to adjust the panel sizes.
- * The documentation area is responsive and will display content in two columns when wide enough.
+ * Panels can be completely collapsed by dragging the resize handle to either edge.
  */
 const PlaygroundLayout: React.FC<PlaygroundLayoutProps> = ({ contentArea, documentationArea }) => {
   // Default left panel width (50%)
@@ -43,9 +43,9 @@ const PlaygroundLayout: React.FC<PlaygroundLayoutProps> = ({ contentArea, docume
       const containerWidth = containerRect.width;
       const mouseX = e.clientX - containerRect.left;
       
-      // Calculate percentage (constrain between 20% and 80%)
+      // Calculate percentage (allow full collapse: 0% to 100%)
       let newLeftPanelWidth = (mouseX / containerWidth) * 100;
-      newLeftPanelWidth = Math.max(20, Math.min(80, newLeftPanelWidth));
+      newLeftPanelWidth = Math.max(0, Math.min(100, newLeftPanelWidth));
       
       setLeftPanelWidth(newLeftPanelWidth);
     };
@@ -91,7 +91,6 @@ const PlaygroundLayout: React.FC<PlaygroundLayoutProps> = ({ contentArea, docume
   }, []);
 
   // Only pass containerWidth prop to React components that can accept it
-  // This prevents React warnings about passing unknown props to DOM elements
   const documentationWithWidth = React.isValidElement(documentationArea) && 
     typeof documentationArea.type === 'function' ? 
     React.cloneElement(documentationArea as ReactElement<WithContainerWidth>, { containerWidth: docContainerWidth }) : 
@@ -100,12 +99,16 @@ const PlaygroundLayout: React.FC<PlaygroundLayoutProps> = ({ contentArea, docume
   return (
     <div 
       ref={containerRef}
-      className="playground-layout w-full h-full bg-slate-200 dark:bg-slate-800 p-4 rounded-lg flex"
+      className="playground-layout w-full h-full bg-slate-200 dark:bg-slate-800 p-2 rounded-lg flex"
     >
       {/* Content Area (Left Side) */}
       <div 
-        className="content-container bg-slate-100 dark:bg-slate-900 rounded-xl p-4 shadow-sm overflow-y-auto"
-        style={{ width: `${leftPanelWidth}%` }}
+        className="content-container bg-slate-100 dark:bg-slate-900 rounded-xl p-4 shadow-sm overflow-y-auto transition-all duration-200"
+        style={{ 
+          width: `${leftPanelWidth}%`,
+          minWidth: leftPanelWidth === 0 ? 0 : undefined,
+          padding: leftPanelWidth === 0 ? 0 : undefined
+        }}
       >
         {contentArea}
       </div>
@@ -126,8 +129,12 @@ const PlaygroundLayout: React.FC<PlaygroundLayoutProps> = ({ contentArea, docume
       {/* Documentation Area (Right Side) */}
       <div 
         ref={docContainerRef}
-        className="documentation-container bg-slate-100 dark:bg-slate-900 rounded-xl p-4 shadow-sm overflow-y-auto"
-        style={{ width: `${100 - leftPanelWidth}%` }}
+        className="documentation-container bg-slate-100 dark:bg-slate-900 rounded-xl p-4 shadow-sm overflow-y-auto transition-all duration-200"
+        style={{ 
+          width: `${100 - leftPanelWidth}%`,
+          minWidth: leftPanelWidth === 100 ? 0 : undefined,
+          padding: leftPanelWidth === 100 ? 0 : undefined
+        }}
       >
         {documentationWithWidth}
       </div>
