@@ -1,7 +1,7 @@
 import React from 'react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
-const data = [
+const defaultData = [
   { name: 'Jan', value: 4000 },
   { name: 'Feb', value: 3000 },
   { name: 'Mar', value: 5000 },
@@ -11,7 +11,11 @@ const data = [
   { name: 'Jul', value: 3490 },
 ];
 
-export const PaymentDashboardHome = () => {
+interface PaymentDashboardHomeProps {
+  data?: { name: string; value: number }[];
+}
+
+export const PaymentDashboardHome: React.FC<PaymentDashboardHomeProps> = ({ data = defaultData }) => {
   return (
     <div className="space-y-6">
       <div>
