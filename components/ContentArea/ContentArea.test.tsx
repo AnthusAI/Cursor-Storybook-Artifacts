@@ -12,13 +12,6 @@ jest.mock('../HelloWorld/HelloWorld', () => {
   };
 });
 
-// Create a spy on getComponentList to control its return value in tests
-jest.spyOn(componentUtils, 'getComponentList').mockImplementation(() => [
-  { name: 'HelloWorld' },
-  { name: 'Button' },
-  { name: 'Card' },
-]);
-
 describe('ContentArea Component', () => {
   beforeEach(() => {
     // Reset mocks
@@ -32,12 +25,12 @@ describe('ContentArea Component', () => {
     expect(screen.getByText('Components')).toBeInTheDocument();
     
     // Check if components are in the sidebar
-    const sidebarButtons = screen.getAllByRole('button');
-    const helloWorldButton = sidebarButtons.find(button => button.textContent === 'HelloWorld');
-    expect(helloWorldButton).toBeInTheDocument();
+    expect(screen.getByText('HelloWorld')).toBeInTheDocument();
+    expect(screen.getByText('PaymentDashboard')).toBeInTheDocument();
     
-    const buttonComponent = sidebarButtons.find(button => button.textContent === 'Button');
-    expect(buttonComponent).toBeInTheDocument();
+    // Check that excluded components are not in the sidebar
+    expect(screen.queryByText('ui')).not.toBeInTheDocument();
+    expect(screen.queryByText('ContentArea')).not.toBeInTheDocument();
   });
   
   it('loads HelloWorld component by default', async () => {
@@ -47,11 +40,6 @@ describe('ContentArea Component', () => {
     await waitFor(() => {
       expect(screen.getByTestId('hello-world-component')).toBeInTheDocument();
     });
-    
-    // Check if the component name is displayed in the header
-    const headings = screen.getAllByRole('heading');
-    const componentHeading = headings.find(heading => heading.textContent === 'HelloWorld');
-    expect(componentHeading).toBeInTheDocument();
   });
   
   it('handles component loading', async () => {

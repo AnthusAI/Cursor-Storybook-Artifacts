@@ -22,8 +22,9 @@ global.ResizeObserver = MockResizeObserver;
 describe('Documentation', () => {
   test('renders section headings', () => {
     render(<Documentation testMode={true} />);
-    expect(screen.getByText('Suggestions')).toBeInTheDocument();
-    expect(screen.getByText('Technologies')).toBeInTheDocument();
+    expect(screen.getByText('Transform Your Business Ideas into Working Software')).toBeInTheDocument();
+    expect(screen.getByText('Built on Professional Tools:')).toBeInTheDocument();
+    expect(screen.getByText('How to Use It:')).toBeInTheDocument();
   });
 
   test('renders resource items as links', () => {

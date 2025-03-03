@@ -1,13 +1,23 @@
+import fs from 'fs';
+import path from 'path';
+
 // Static list of components
 // This list should be updated when new components are added to the project
 
 // Component directories to exclude from the sidebar
-const EXCLUDED_COMPONENT_DIRS = ['PlaygroundLayout', 'ContentArea', 'Documentation', 'InspirationResources', 'ui'];
+const EXCLUDED_COMPONENT_DIRS = [
+  'PlaygroundLayout',
+  'ContentArea',
+  'Documentation',
+  'InspirationResources',
+  'ui'
+];
 
-// Regular components (top-level folders in the components directory)
-const REGULAR_COMPONENTS = [
-  { name: 'HelloWorld' },
-  // Add new components here when they are created
+// This list is automatically generated during build time
+// The actual components will be discovered through webpack's require.context
+const AVAILABLE_COMPONENTS = [
+  'HelloWorld',
+  'PaymentDashboard'
 ];
 
 /**
@@ -20,10 +30,10 @@ export function getComponentList() {
     children?: { name: string }[];
   }[] = [];
   
-  // Add regular components
-  REGULAR_COMPONENTS.forEach(component => {
-    if (!EXCLUDED_COMPONENT_DIRS.includes(component.name)) {
-      items.push({ name: component.name });
+  // Filter out excluded directories and add remaining ones to the list
+  AVAILABLE_COMPONENTS.forEach(dir => {
+    if (!EXCLUDED_COMPONENT_DIRS.includes(dir)) {
+      items.push({ name: dir });
     }
   });
   

@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
   entry: './src/index.tsx',
@@ -37,11 +38,21 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
     modules: [path.resolve(__dirname), 'node_modules'],
+    fallback: {
+      "fs": false,
+      "path": require.resolve("path-browserify")
+    }
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'src/index.html'),
     }),
+    new webpack.DefinePlugin({
+      'process.env.AVAILABLE_COMPONENTS': JSON.stringify([
+        'HelloWorld',
+        'PaymentDashboard'
+      ])
+    })
   ],
   devServer: {
     static: {
