@@ -30,5 +30,10 @@ jobs:
       - name: Run Jest tests
         run: npm test
 
+      - name: Build Storybook
+        run: npm run build-storybook
+
       - name: Run Storybook tests
-        run: npm run test-storybook 
+        run: npm run test-storybook
+        env:
+          NODE_OPTIONS: --no-experimental-fetch # Ensure stable fetch behavior 
