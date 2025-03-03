@@ -190,55 +190,45 @@ const Documentation: React.FC<DocumentationProps> = ({ initialWidth = 0, testMod
       <div className="mb-8">
         <h2 className="text-xl font-bold mb-3">Transform Your Business Ideas into Working Software</h2>
         <p className="mb-4 text-slate-700 dark:text-slate-300">
-          Vibe Coding Workbench is a <b>starter kit designed for business leaders</b>.  You have ideas about apps that
-          could deliver business value, but sometimes the time and expense of working with designers and developers to prototype
-          new ideas is just too much.
-        </p> 
-        <p className="mb-4 text-slate-700 dark:text-slate-300">
-          Instead of getting caught in endless design cycles working on Figma mockups and then handing the designs off
-          to developers to implement, going back and forth across time zones — you can instead <b>rapidly create 
-          functional prototypes that demonstrate real business value</b>.
+          Vibe Coding Workbench is a <b>curated framework for business leaders</b> who want to create production-ready web applications. 
+          It leverages <a href="https://cursor.sh" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">Cursor</a>'s 
+          powerful AI capabilities, enhanced with specific opinions and best practices for creating components that deliver real business value.
         </p>
         <p className="mb-4 text-slate-700 dark:text-slate-300">
-          With "vibe coding", you can create something in an afternoon that expresses your vision.
-          But you need a <b>smooth way to hand off the prototype to developers</b> who can then refine it into a production-ready
-          application, rather than handing them a problem to clean up, from some late-night v0.dev session or something.
+          Instead of getting caught in endless design cycles or struggling with AI tools that generate throwaway code, 
+          you can use our carefully selected set of technologies and practices to <b>create production-ready prototypes 
+          that professional developers can build upon</b>.
         </p>
         <p className="mb-4 text-slate-700 dark:text-slate-300">
-          These prototypes are <b>built on solid foundations with best practices and agile principles at their core</b>, 
-          making them <b>easy for professional developers to refine and integrate into production systems</b>.
+          This framework provides a <b>proven structure for development</b>, with integrated rules that guide Cursor's AI 
+          toward professional-grade code. Everything you create follows established patterns and best practices, making it 
+          easy for development teams to refine and integrate into production systems.
         </p>
         
-        <p className="mb-4 text-slate-700 dark:text-slate-300">
-          When you've created something valuable with vibe coding and need help taking it to the next level, 
-          <a href="https://anth.us" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline"> Anthus AI Solutions</a> provides 
-          the expertise to help you deploy and operate your application with enterprise-level sophistication.
-        </p>
-        
-        <h3 className="text-lg font-medium mb-2">Features:</h3>
+        <h3 className="text-lg font-medium mb-2">Built on Professional Tools:</h3>
         <ul className="list-disc pl-5 mb-4 text-slate-700 dark:text-slate-300 space-y-2">
           <li>
-            <strong>Aligned with Agile Development:</strong> Make small, verifiable changes that add up to big results. 
-            Each small step reduces risk and allows for continuous validation.
+            <strong>Cursor's AI Technology:</strong> Powerful AI-driven development with our added opinions 
+            about component structure, testing, and code organization
           </li>
           <li>
-            <strong>Built on Test-Driven Development:</strong> Tests serve as specifications that lock in requirements 
-            and prevent future changes from breaking existing functionality.
+            <strong>Storybook Integration:</strong> Visual development environment for building and testing 
+            components in isolation
           </li>
           <li>
-            <strong>Automatic Error Detection:</strong> Tools like TypeScript catch issues immediately, 
-            when they're much cheaper and faster to fix than after deployment.
+            <strong>Comprehensive Testing:</strong> Automated tests that serve as specifications and prevent 
+            future changes from breaking functionality
           </li>
           <li>
-            <strong>Developer-Friendly Output:</strong> Everything you create is built on industry-standard 
-            technologies that professional developers prefer, making handoff smooth.
+            <strong>Modern Stack:</strong> React, TypeScript, and other production-ready technologies that 
+            professional teams prefer
           </li>
         </ul>
         
-        <h3 className="text-lg font-medium mb-2">How to do it:</h3>
+        <h3 className="text-lg font-medium mb-2">How to Use It:</h3>
         <ol className="list-decimal pl-5 mb-4 text-slate-700 dark:text-slate-300 space-y-2">
           <li>
-            <strong>Set up your development environment:</strong>
+            <strong>Set up your environment:</strong>
             <ul className="list-disc pl-5 mt-1 mb-2">
               <li>Open Cursor IDE</li>
               <li>Open a browser with three tabs:
@@ -251,7 +241,7 @@ const Documentation: React.FC<DocumentationProps> = ({ initialWidth = 0, testMod
             </ul>
           </li>
           <li>
-            <strong>Examples of what you can ask:</strong>
+            <strong>Describe what you want to build:</strong>
             <ul className="list-disc pl-5 mt-1">
               <li>"Create a new button component with primary and secondary variants"</li>
               <li>"Add form validation to the contact form"</li>
@@ -263,7 +253,7 @@ const Documentation: React.FC<DocumentationProps> = ({ initialWidth = 0, testMod
         
         <p className="text-sm text-slate-600 dark:text-slate-400">
           Get started by exploring the suggestions below or browsing the technology resources 
-          to understand the building blocks available for your project.
+          to understand the building blocks available in this framework.
         </p>
       </div>
       

@@ -1,17 +1,33 @@
-# Vibe Coding Workbench: Interactive Chat-Driven Development
+# Vibe Coding Workbench: A Professional Web Development Framework for Cursor
 
 ## Transform Ideas into Production-Ready Prototypes
 
-**Vibe Coding Workbench** is an interactive, chat-driven development environment that helps you build whatever you can imagine. Think of it as a professional-grade evolution of tools like Claude Artifacts, v0.dev, Bolt.new, and similar AI coding assistants - you get a powerful chat interface for describing what you want to build, plus a complete development environment that ensures your creations are production-ready.
+**Vibe Coding Workbench** is a curated development framework that helps you build production-ready web applications using [Cursor](https://cursor.sh)'s powerful AI capabilities. While tools like Claude Artifacts, v0.dev, and Bolt.new offer AI-driven development, Vibe Coding Workbench takes a different approach: it provides a carefully selected set of technologies, opinions, and best practices for using Cursor to create web components that deliver real business value and can be seamlessly integrated into production applications.
+
+### Built on Cursor's AI Technology
+
+This project doesn't provide new AI technology - instead, it leverages Cursor's existing AI capabilities and enhances them with:
+
+- **Curated Best Practices**: Integrated rules that guide Cursor's AI toward professional-grade code
+- **Development Workflow**: A proven structure for creating, testing, and sharing components
+- **Technology Stack**: Carefully selected tools that work together seamlessly:
+  - **Storybook**: For component development and documentation
+  - **Comprehensive Testing**: Jest and Storybook interaction tests
+  - **Modern Web Stack**: React, TypeScript, and other production-ready technologies
+  - **Developer Handoff**: Clean, well-structured code that professional teams can build upon
 
 ### What Makes It Special
 
-- **Chat-Driven Development**: Like Claude Artifacts, you have a dedicated chat session where you describe what you want to build, while seeing your code evolve in real-time
-- **Production-Ready Foundation**: Everything you create is built on professional-grade tools and practices:
-  - **Storybook Integration**: Preview and test UI components in isolation
-  - **Comprehensive Testing**: Automated tests ensure your features work reliably
-  - **Modern Tech Stack**: Built with React, TypeScript, and other industry standards
-  - **Developer-Friendly**: Clean code that professional developers can easily build upon
+- **Opinionated Framework**: While Cursor's AI is powerful, this framework adds specific opinions about:
+  - How to structure components for maximum reusability
+  - When and how to write tests
+  - Best practices for code organization
+  - Patterns for business-developer collaboration
+- **Production Focus**: Everything is built with real-world deployment in mind:
+  - Components are properly isolated and tested
+  - Code follows established patterns
+  - Documentation is business-friendly
+  - Changes are easy to track and share
 
 ### Perfect for Business Leaders
 
