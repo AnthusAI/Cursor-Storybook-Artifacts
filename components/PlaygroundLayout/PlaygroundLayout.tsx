@@ -1,6 +1,9 @@
 import React, { useState, useRef, useEffect, ReactNode, ReactElement } from 'react';
 import './PlaygroundLayout.css';
 
+// Local storage key for documentation collapse state
+const DOCUMENTATION_COLLAPSED_KEY = 'vibe-workbench-documentation-collapsed';
+
 interface PlaygroundLayoutProps {
   contentArea: ReactNode;
   documentationArea: ReactNode;
@@ -30,6 +33,25 @@ const PlaygroundLayout: React.FC<PlaygroundLayoutProps> = ({ contentArea, docume
   const [isDocumentationCollapsed, setIsDocumentationCollapsed] = useState<boolean>(false);
   const [lastExpandedWidth, setLastExpandedWidth] = useState<number>(50);
 
+  // Load saved documentation collapse state from localStorage on initial render
+  useEffect(() => {
+    const savedCollapsedState = localStorage.getItem(DOCUMENTATION_COLLAPSED_KEY);
+    if (savedCollapsedState === 'true') {
+      setIsDocumentationCollapsed(true);
+      setLeftPanelWidth(99.5);
+    } else {
+      // Try to restore the last expanded width if available
+      const savedLastExpandedWidth = localStorage.getItem(`${DOCUMENTATION_COLLAPSED_KEY}-last-width`);
+      if (savedLastExpandedWidth) {
+        const parsedWidth = parseFloat(savedLastExpandedWidth);
+        if (!isNaN(parsedWidth) && parsedWidth > 0 && parsedWidth < 99.5) {
+          setLastExpandedWidth(parsedWidth);
+          setLeftPanelWidth(parsedWidth);
+        }
+      }
+    }
+  }, []);
+
   // Handle mouse down on the drag handle
   const handleMouseDown = (e: React.MouseEvent): void => {
     e.preventDefault();
@@ -58,11 +80,14 @@ const PlaygroundLayout: React.FC<PlaygroundLayoutProps> = ({ contentArea, docume
       // If collapsed, expand to last known width or default to 50%
       setLeftPanelWidth(lastExpandedWidth);
       setIsDocumentationCollapsed(false);
+      localStorage.setItem(DOCUMENTATION_COLLAPSED_KEY, 'false');
     } else {
       // If expanded, save current width and collapse
       setLastExpandedWidth(leftPanelWidth);
+      localStorage.setItem(`${DOCUMENTATION_COLLAPSED_KEY}-last-width`, leftPanelWidth.toString());
       setLeftPanelWidth(99.5);
       setIsDocumentationCollapsed(true);
+      localStorage.setItem(DOCUMENTATION_COLLAPSED_KEY, 'true');
     }
   };
 
@@ -80,6 +105,18 @@ const PlaygroundLayout: React.FC<PlaygroundLayoutProps> = ({ contentArea, docume
       newLeftPanelWidth = Math.max(0, Math.min(100, newLeftPanelWidth));
       
       setLeftPanelWidth(newLeftPanelWidth);
+      
+      // Update collapsed state based on width
+      const newIsCollapsed = newLeftPanelWidth >= 99.5;
+      if (newIsCollapsed !== isDocumentationCollapsed) {
+        setIsDocumentationCollapsed(newIsCollapsed);
+        localStorage.setItem(DOCUMENTATION_COLLAPSED_KEY, newIsCollapsed.toString());
+        
+        // If not collapsed, save the width for future use
+        if (!newIsCollapsed && newLeftPanelWidth < 99.5) {
+          localStorage.setItem(`${DOCUMENTATION_COLLAPSED_KEY}-last-width`, newLeftPanelWidth.toString());
+        }
+      }
     };
 
     const handleMouseUp = (): void => {
@@ -95,7 +132,7 @@ const PlaygroundLayout: React.FC<PlaygroundLayoutProps> = ({ contentArea, docume
       document.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseup', handleMouseUp);
     };
-  }, [isDragging]);
+  }, [isDragging, isDocumentationCollapsed]);
 
   // Track documentation container width for responsive layout
   useEffect(() => {
@@ -128,6 +165,7 @@ const PlaygroundLayout: React.FC<PlaygroundLayoutProps> = ({ contentArea, docume
       // Always collapse when X is clicked
       setLeftPanelWidth(99.5);
       setIsDocumentationCollapsed(true);
+      localStorage.setItem(DOCUMENTATION_COLLAPSED_KEY, 'true');
     };
 
     window.addEventListener('toggleDocumentation', handleToggleDocumentation);

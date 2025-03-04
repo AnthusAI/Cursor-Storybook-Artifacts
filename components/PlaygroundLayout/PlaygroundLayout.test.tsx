@@ -3,6 +3,25 @@ import { render, screen, fireEvent, act } from '@testing-library/react';
 import '@testing-library/jest-dom'; // Import jest-dom for the custom matchers
 import PlaygroundLayout from './PlaygroundLayout';
 
+// Mock localStorage
+const localStorageMock = (() => {
+  let store: Record<string, string> = {};
+  return {
+    getItem: (key: string) => store[key] || null,
+    setItem: (key: string, value: string) => {
+      store[key] = value;
+    },
+    removeItem: (key: string) => {
+      delete store[key];
+    },
+    clear: () => {
+      store = {};
+    }
+  };
+})();
+
+Object.defineProperty(window, 'localStorage', { value: localStorageMock });
+
 // Mock ResizeObserver
 global.ResizeObserver = class ResizeObserver {
   callback: ResizeObserverCallback;
@@ -30,6 +49,11 @@ global.ResizeObserver = class ResizeObserver {
 };
 
 describe('PlaygroundLayout', () => {
+  beforeEach(() => {
+    // Clear localStorage before each test
+    window.localStorage.clear();
+  });
+
   test('renders content area and documentation area', () => {
     // Arrange
     const contentText = 'Content Area Test';
@@ -115,5 +139,55 @@ describe('PlaygroundLayout', () => {
     
     // Assert - should have the width from our mocked element
     expect(screen.getByTestId('doc-component')).toBeInTheDocument();
+  });
+
+  test('persists documentation collapse state to localStorage', async () => {
+    // Arrange
+    const { container } = render(
+      <PlaygroundLayout 
+        contentArea={<div>Content</div>}
+        documentationArea={<div>Documentation</div>}
+      />
+    );
+    
+    const resizeHandle = container.querySelector('.resize-handle');
+    
+    // Act - click the resize handle to collapse documentation
+    if (resizeHandle) {
+      fireEvent.click(resizeHandle);
+    }
+    
+    // Assert - localStorage should have the collapsed state
+    expect(window.localStorage.getItem('vibe-workbench-documentation-collapsed')).toBe('true');
+    
+    // Act - click again to expand
+    if (resizeHandle) {
+      fireEvent.click(resizeHandle);
+    }
+    
+    // Assert - localStorage should have the expanded state
+    expect(window.localStorage.getItem('vibe-workbench-documentation-collapsed')).toBe('false');
+  });
+
+  test('loads documentation collapse state from localStorage on mount', async () => {
+    // Arrange - set localStorage to collapsed state
+    window.localStorage.setItem('vibe-workbench-documentation-collapsed', 'true');
+    
+    // Act
+    const { container } = render(
+      <PlaygroundLayout 
+        contentArea={<div>Content</div>}
+        documentationArea={<div>Documentation</div>}
+      />
+    );
+    
+    // Wait for effects to run
+    await act(async () => {
+      await new Promise(resolve => setTimeout(resolve, 10));
+    });
+    
+    // Assert - documentation should be collapsed (content area should take up almost all space)
+    const contentContainer = container.querySelector('.content-container') as HTMLElement;
+    expect(contentContainer.style.width).toBe('99.5%');
   });
 }); 
