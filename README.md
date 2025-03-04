@@ -6,6 +6,10 @@
 
 For a detailed exploration of the philosophy and methodology behind Vibe Coding, read [The Vibe Coding Client](https://anth.us/blog/vibe-coding-client/).
 
+## Watch Vibe Coding Workbench in Action
+
+[![Vibe Coding Workbench Demo](https://img.youtube.com/vi/Qw2807PSZ5I/maxresdefault.jpg)](https://www.youtube.com/watch?v=Qw2807PSZ5I)
+
 ### Built on Cursor's AI Technology
 
 This project doesn't provide new AI technology - instead, it leverages Cursor's existing AI capabilities and enhances them with:
