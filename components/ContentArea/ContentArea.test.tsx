@@ -12,6 +12,15 @@ jest.mock('../HelloWorld/HelloWorld', () => {
   };
 });
 
+// Mock the component-utils module
+jest.mock('../../lib/component-utils', () => ({
+  getComponentList: jest.fn().mockReturnValue([
+    { name: 'HelloWorld' },
+    { name: 'PaymentDashboard' }
+  ]),
+  getComponentImportPath: jest.fn((componentName) => `../components/${componentName}/${componentName}`)
+}));
+
 describe('ContentArea Component', () => {
   beforeEach(() => {
     // Reset mocks
