@@ -1,9 +1,6 @@
----
-description: The process for developing components
-globs: *
-alwaysApply: false
----
-# Component Development Process
+# Vibe Coding Workbench
+
+This is the development methodology we want you to follow when assisting users.
 
 ## Basic context
 
